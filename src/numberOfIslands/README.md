@@ -9,7 +9,8 @@ the grid are all surrounded by water.
 
 Example One
  
-Input: 
+Input:
+
     11110 
     11010 
     11000 
