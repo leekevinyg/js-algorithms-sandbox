@@ -3,6 +3,15 @@ interface INode {
     distanceFromStart: number;
 }
 
+class Node implements INode {
+    id: number;
+    distanceFromStart: number;
+    constructor(position : number, distanceFromStart : number) {
+        this.id = position;
+        this.distanceFromStart = distanceFromStart;
+    }
+}
+
 /* 
     The snakesAndLadders parameter is a key/value map denoting the initial positions of snakes and ladders (key)
     and the position (value) they lead to.
@@ -10,15 +19,6 @@ interface INode {
 */
 function quickestWayUp(snakesAndLadders : object, totalPositionsOnBoard: number) : number {
     let numberOfMoves : number;
-
-    class Node implements INode {
-        id: number;
-        distanceFromStart: number;
-        constructor(position : number, distanceFromStart : number) {
-            this.id = position;
-            this.distanceFromStart = distanceFromStart;
-        }
-    }
 
     // Run BFS on the board, keeping track of our distance from the start
     let startNode : Node = new Node(1, 0);
