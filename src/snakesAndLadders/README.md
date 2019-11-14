@@ -8,8 +8,7 @@ the player can ascend the ladder to whereever the ladder leads. If that
 position is occupied by a snake, then the player slides down the board to
 whereever the snake leads. The goal is to get to the final position in the
 board. For the purposes of this question, we assume we can control the dice
-roll. The goal is to find the shortest number of moves that it will take to
-get to our goal position.
+roll and the goal is to find the quickest way up the board to the final position.
 
 **Solution (Using BFS)**
 
