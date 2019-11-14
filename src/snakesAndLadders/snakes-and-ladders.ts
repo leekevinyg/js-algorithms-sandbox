@@ -53,7 +53,6 @@ function quickestWayUp(snakesAndLadders : object, totalPositionsOnBoard: number)
         }
     }
 
-
     return numberOfMoves;
 }
 
