@@ -1,6 +1,7 @@
 <h2>Snakes and Ladders</h2>
 
 **Question**
+
 In a snacks and ladder game, each player moves X places along the board based
 off the result of a dice throw. If player A throws a 2, then player A moves
 from position 2 to position 4. If that position is occupied by a ladder, then
