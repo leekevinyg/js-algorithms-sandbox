@@ -42,7 +42,7 @@ function quickestWayUp(snakesAndLadders : object, totalPositionsOnBoard: number)
             }
 
             let nextPosId : number = pos;
-            if (snakesAndLadders[pos] !== 0) {
+            if (snakesAndLadders[pos] !== undefined) {
                 nextPosId = snakesAndLadders[pos];
             }
 
