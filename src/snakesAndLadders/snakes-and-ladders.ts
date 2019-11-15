@@ -36,7 +36,7 @@ function quickestWayUp(snakesAndLadders : object, totalPositionsOnBoard: number)
         }
 
         // visit the next 6 positions accessible from a dice roll + positions connected by snakes and ladders
-        for (let pos : number = nodeId + 1; pos < nodeId + 6 && nodeId < totalPositionsOnBoard; ++pos) {
+        for (let pos : number = nodeId + 1; pos <= nodeId + 6 && nodeId < totalPositionsOnBoard; ++pos) {
             if (visited[pos]) {
                 continue;
             }
