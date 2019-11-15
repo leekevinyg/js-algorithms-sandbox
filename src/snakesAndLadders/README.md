@@ -27,3 +27,8 @@ and we keep track of the number of moves it has taken us to get there. We contin
 doing this until we arrive at the goal node. Since we are keeping track of total 
 distance that it has taken us to get there, we can just return the distance from 
 the start of the goal node to get the fewest number of moves needed.
+
+**Complexity Analysis**
+
+The time complexity of this solution is O(N), as every board position is added and removed
+only once from the queue and each enqueue and dequeue operation takes constant time.
