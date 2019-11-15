@@ -13,8 +13,9 @@ roll and the goal is to find the quickest way up the board to the final position
 
 **Solution (Using BFS)**
 
+This problem can be reduced to a BFS search for the shortest path in a graph.
 First we represent the board as a 1D integer array of 1 to totalNumberOfBoardPositions. 
-Each integer represents a position on the array. From each position we have access to 
+Each integer represents a position on the board. From each position we have access to 
 the next 6 possible positions (from the dice roll). On top of these 6 positions, 
 we also have access to any positions that we can get to via a snake or a ladder 
 from these 6 positions. We can use BFS to explore the graph since all edges are weighted 
