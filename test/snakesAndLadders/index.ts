@@ -17,7 +17,7 @@ describe('Snakes and ladders problem', () => {
       expect(quickestWayUp(snakesAndLadders, goalPos)).to.equal(1);
     });
 
-    it('returns 10 dice roll to get to a goal of 60 when no snakes or ladders are on the board ', () => {
+    it('returns 10 dice rolls to get to a goal of 60 when no snakes or ladders are on the board ', () => {
       const goalPos = 60;
       const snakesAndLadders = {};
       expect(quickestWayUp(snakesAndLadders, goalPos)).to.equal(10);
