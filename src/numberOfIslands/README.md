@@ -45,6 +45,10 @@ Once we have traversed all nodes, we simply check how many unique roots there
 are in our tree to get the total number of connected components. Subtracting
 the water components from this value will give us the total # of islands.
 
+**Complexity Analysis**
+
+TODO
+
 **Union Find Notes**
 
 1) Union
