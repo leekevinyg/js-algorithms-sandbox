@@ -11,7 +11,7 @@ describe('Snakes and ladders problem', () => {
       expect(quickestWayUp(snakesAndLadders, goalPos)).to.equal(1);
     });
 
-    it('returns 1 dice roll to get to a goal of 7 when no snakes or ladders are on the board ', () => {
+    it('returns 1 dice roll to get to a goal of 7 when no snakes or ladders are on the board (this will detect an off by one error)', () => {
       const goalPos = 7;
       const snakesAndLadders = {};
       expect(quickestWayUp(snakesAndLadders, goalPos)).to.equal(1);
