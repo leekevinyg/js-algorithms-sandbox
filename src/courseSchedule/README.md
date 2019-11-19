@@ -37,5 +37,8 @@ Important questions:
 Are there courses without prequisites? If yes, then we are working with a disconnected graph. If no, then the graph is 
 a single component.
 
+**TODO: Investigate**
+
 [why DFS for cycle detection?](https://stackoverflow.com/questions/2869647/why-dfs-and-not-bfs-for-finding-cycle-in-graphs))
-[how to do DFS on a disconnected graph?]()
+
+[how to do DFS on a disconnected graph?]

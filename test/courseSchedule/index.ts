@@ -13,4 +13,8 @@ describe('Course Schedule problem', () => {
     it('returns false when passed 2 courses that are pre-reqs of each other', () => {
         expect(canFinishAllCourses([[1, 0], [0, 1]])).to.equal(false);
     });
+
+    it('returns true when passed a directed graph with no cycles but a node that is reachable by 2 paths', () => {
+        expect(canFinishAllCourses([[0, 3], [3, 4], [4, 2], [0, 1], [1, 2]])).to.equal(true);
+    });
 });

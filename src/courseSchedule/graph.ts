@@ -6,9 +6,11 @@ interface IGraph {
 export class Graph implements IGraph {
     // a map of a vertex (key) to it's number[] of neighboring tail verticies
     private adjList : object;
+    private exploredNodes : number[];
 
     constructor() {
         this.adjList = {};
+        this.exploredNodes = new Array();
     }
 
     public addEdge(edge: number[]) : void {
@@ -36,21 +38,21 @@ export class Graph implements IGraph {
     public isCyclicDFS(startNode : number) : boolean {
         let isCyclic = false;
         let stack = [startNode];
-        let exploredNodes : number[] = new Array();
 
         while (stack.length > 0) {
             let currNode = stack.pop();
-            if (exploredNodes.includes(currNode)) {
+            // TODO: do we need to keep track of explored nodes?
+            if (this.exploredNodes.includes(currNode)) {
                 isCyclic = true;
                 break;
             }
 
-            exploredNodes.push(currNode);
+            this.exploredNodes.push(currNode);
             let neighbors = this.adjList[currNode];
 
             // disconnected graph, start DFS again at next unexplored component
             if (!neighbors || neighbors.length === 0) {
-                let nextUnexploredNode : number = this.getNextUnexploredNode(exploredNodes);
+                let nextUnexploredNode : number = this.getNextUnexploredNode(this.exploredNodes);
                 if (nextUnexploredNode === -1) {
                     return false;
                 }
@@ -61,6 +63,7 @@ export class Graph implements IGraph {
                 stack.push(neighbors[i]);
             }
         }
+        this.exploredNodes = new Array();
         return isCyclic;
     }
 }
