@@ -23,5 +23,8 @@ describe('Course Schedule problem', () => {
         expect(canFinishAllCourses([[0,1], [1,2], [2,0]])).to.equal(false);
         expect(canFinishAllCourses([[0,1], [0, 2], [1,0], [2,0], [2,3], [3,3]])).to.equal(false);
     });
-});
+
+    it('can handle disconnected graphs?', () => {
+
+    });
 });
