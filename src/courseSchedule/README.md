@@ -27,12 +27,12 @@ and vice versa.
 
 We will represent courseA requiring a prerequisite of courseB as the edge courseA -> courseB. The graph will contain a cycle if there is also an edge we can follow from courseB back to courseA.
 
-For cycle detection, we use DFS. If we encounter a node that is already in our recursion stack, then we 
-know we have encountered a cycle, making it impossible to finish all courses.
+For cycle detection, we use DFS. If we encounter a node that is already in our current path to a node i.e.,
+(already in our recursion stack) then we know we have encountered a cycle, making it impossible to finish all courses.
 
 **Time Complexity**
 
-For DFS, the time complexity is usually O(V+E) since we need to touch every vertex and follow every edge.
+For DFS, the time complexity is usually O(V+E) since we need to touch every vertex and follow every edge. In this problem, the time complexity is O(N), where N is the number of courses, since we only touch one node once in our traversal.
 
 **Notes**
 
@@ -42,8 +42,10 @@ Another option to solve this problem is to use topological sort i.e., can the gr
 for every vertex u and v, u comes before v in the directed graph? If the grpah can be arranged topologically,
 then it does not contain cycles. Topological sort algorithms can usually be implemented in linear time.
 
-TODO: Challenges of DFS on a disconnected graph.
+**Important questions**
 
-Important questions:
+1) Are there courses without prequisites? If yes, then we are working with a disconnected graph. If no, then the graph is a single connected component.
 
-Are there courses without prequisites? If yes, then we are working with a disconnected graph. If no, then the graph is a single connected component.
+2) Are their duplicate edges?
+
+3) How would this problem change if we were working with an undirected graph?

@@ -1,18 +1,19 @@
 import { Graph } from './graph';
 
-function canFinishAllCourses(coursesAndPrereqs : number[][]) : boolean {
-    if (coursesAndPrereqs === null || coursesAndPrereqs.length === 0) {
+function canFinishAllCourses(numCourses : number, prerequisites : number[][]) : boolean {
+    if (prerequisites === null || prerequisites.length === 0) {
         return true;
     }
 
     let graph : Graph = new Graph();
-    for (let i = 0; i < coursesAndPrereqs.length; i++) {
-        graph.addEdge(coursesAndPrereqs[i]);
+    for (let i = 0; i < prerequisites.length; i++) {
+        graph.addEdge(prerequisites[i]);
     }
 
-    let startNode : number = coursesAndPrereqs[0][0];
-    if (graph.isCyclicDFS(startNode)) {
-        return false;
+    for (let node=0; node < numCourses - 1; node++) {
+        if (graph.isCyclicDFS(node)) {
+            return false;
+        }
     }
     return true;
 }

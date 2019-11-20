@@ -6,9 +6,12 @@ interface IGraph {
 export class Graph implements IGraph {
     // a map of a vertex (key) to it's number[] of neighboring tail verticies
     private adjList : object;
+    private visited : number[];
+    private currentPath : number[];
 
     constructor() {
         this.adjList = {};
+        this.visited = [];
     }
 
     public addEdge(edge: number[]) : void {
@@ -23,26 +26,25 @@ export class Graph implements IGraph {
     }
 
     public isCyclicDFS(startNode : number) : boolean {
-        let isCyclic = false;
-        let stack = [startNode];
-        let visited = [];
-        let currentPathToLeaf = [];
+        let isCyclic : boolean = false;
+        let stack : number[] = [startNode];
+        this.currentPath = [];
 
         while (stack.length > 0) {
-            let currNode = stack.pop();
-            if (currentPathToLeaf.includes(currNode)) {
+            let currNode : number = stack.pop();
+            if (this.currentPath.includes(currNode)) {
                 isCyclic = true;
                 break;
             }
-            if (visited.includes(currNode)) {
+            if (this.visited.includes(currNode)) {
                 continue;
             }
-            visited.push(currNode);
-            currentPathToLeaf.push(currNode);
-            let neighbors = this.adjList[currNode];
+            this.visited.push(currNode);
+            this.currentPath.push(currNode);
+            let neighbors : number[] = this.adjList[currNode];
             if (!neighbors) {
-                // we are at a leaf node, clear current path to node
-                currentPathToLeaf = [];
+                // we are at a leaf node, and about to backtrack, clear current node from recursion stack
+                this.currentPath = this.currentPath.filter(node => node !== currNode);
                 continue;
             }
             for (let i=0; i < neighbors.length; i++) {
