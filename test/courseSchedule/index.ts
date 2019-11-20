@@ -17,7 +17,7 @@ describe('Course Schedule problem', () => {
 });
 
 describe('Graph.isCyclicDFS()', () => {
-    it('returns true when passed a directed graph with no cycles but a node that is reachable by 2 paths', () => {
+    it('returns false when passed a directed graph with no cycles but a node that is reachable by 2 paths', () => {
         // graph from https://stackoverflow.com/a/2869661/1718640
         const g = new Graph();
         const edges = [[0, 3], [3, 4], [4, 2], [0, 1], [1, 2]];
@@ -29,7 +29,7 @@ describe('Graph.isCyclicDFS()', () => {
         expect(g.isCyclicDFS(startNode)).to.equal(false);
     });
 
-    it('returns false when passed cyclic graphs', () => {
+    it('returns true when passed cyclic graphs', () => {
         const graphA = new Graph();
         const aEdges = [[0,1], [1,2], [2,0]];
         for (let i=0; i<aEdges.length;i++) {
