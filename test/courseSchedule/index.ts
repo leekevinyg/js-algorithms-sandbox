@@ -15,6 +15,7 @@ describe('Course Schedule problem', () => {
     });
 
     it('returns true when passed a directed graph with no cycles but a node that is reachable by 2 paths', () => {
+        // graph from https://stackoverflow.com/a/2869661/1718640
         expect(canFinishAllCourses([[0, 3], [3, 4], [4, 2], [0, 1], [1, 2]])).to.equal(true);
     });
 
@@ -22,4 +23,5 @@ describe('Course Schedule problem', () => {
         expect(canFinishAllCourses([[0,1], [1,2], [2,0]])).to.equal(false);
         expect(canFinishAllCourses([[0,1], [0, 2], [1,0], [2,0], [2,3], [3,3]])).to.equal(false);
     });
+});
 });
