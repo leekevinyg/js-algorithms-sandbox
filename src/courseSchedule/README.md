@@ -22,23 +22,28 @@ Explanation: There are a total of 2 courses to take. To take course 1 you should
 
 **Solution**
 
-This problem can be reduced to the problem of finding if a directed graph contains cycles. If it contains a cycle, 
-then it is not possible to finish all courses as taking one course will rely on taking another course,
+This problem can be reduced to the problem of finding if a directed graph contains cycles. If it contains a cycle, then it is not possible to finish all courses as taking one course will rely on taking another course,
 and vice versa.
 
-We will represent courseA requiring a prerequisite of courseB as the edge courseA -> courseB. The graph will contain a 
-cycle if there is also an edge we can follow from courseB back to courseA.
+We will represent courseA requiring a prerequisite of courseB as the edge courseA -> courseB. The graph will contain a cycle if there is also an edge we can follow from courseB back to courseA.
 
 For cycle detection, we use DFS. If we encounter a node that is already in our recursion stack, then we 
 know we have encountered a cycle, making it impossible to finish all courses.
 
+**Time Complexity**
+
+For DFS, the time complexity is usually O(V+E) since we need to touch every vertex and follow every edge.
+
+**Notes**
+
+Tracking visited nodes is not enough to determine if there is a cycle in a graph. There can be two separate paths to the SAME node that do not result in a cycle. See this [post](https://stackoverflow.com/a/2869661/1718640) for details.
+
+Another option to solve this problem is to use topological sort i.e., can the graph be arranged such that 
+for every vertex u and v, u comes before v in the directed graph? If the grpah can be arranged topologically,
+then it does not contain cycles. Topological sort algorithms can usually be implemented in linear time.
+
+TODO: Challenges of DFS on a disconnected graph.
+
 Important questions:
 
-Are there courses without prequisites? If yes, then we are working with a disconnected graph. If no, then the graph is 
-a single component.
-
-**TODO: Investigate**
-
-[why DFS for cycle detection?](https://stackoverflow.com/questions/2869647/why-dfs-and-not-bfs-for-finding-cycle-in-graphs))
-
-[how to do DFS on a disconnected graph?]
+Are there courses without prequisites? If yes, then we are working with a disconnected graph. If no, then the graph is a single connected component.
