@@ -42,8 +42,20 @@ Another option to solve this problem is to use topological sort i.e., can the gr
 for every vertex u and v, u comes before v in the directed graph? If the grpah can be arranged topologically,
 then it does not contain cycles. Topological sort algorithms can usually be implemented in linear time.
 
-**Important questions**
+**Interesting follow up topics**
 
-1) Are their duplicate edges?
+A few follow up questions to investigate: 
 
-2) How would this problem change if we were working with an undirected graph?
+1) Can BFS be used to cycle detection too?
+
+2) Consider undirected vs directed graphs. What are the impacts on cycle detection?
+
+A few resources:
+
+- [Detecting cycle in a graph using union find](https://www.geeksforgeeks.org/union-find/)
+
+- [Detecting a cycle in an undirected graph using BFS](https://www.geeksforgeeks.org/detect-cycle-in-an-undirected-graph-using-bfs/)
+
+- [Topological Sorting](https://www.geeksforgeeks.org/topological-sorting/)
+
+- [Detecting a cycle in a directed graph using DFS](https://www.geeksforgeeks.org/detect-cycle-in-a-graph/)
