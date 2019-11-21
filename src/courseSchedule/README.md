@@ -38,6 +38,8 @@ For DFS, the time complexity is usually O(V+E) since we need to touch every vert
 
 Tracking visited nodes is not enough to determine if there is a cycle in a graph. There can be two separate paths to the SAME node that do not result in a cycle. See this [post](https://stackoverflow.com/a/2869661/1718640) for details.
 
+To detect a cycle properly, we have to maintain the current path to a node in the recursion or user-maintained stack. When we backtrack, we must delete nodes from our current path to a node. If we encounter a node that is already in the stack, then we have found a cycle.
+
 Another option to solve this problem is to use topological sort i.e., can the graph be arranged such that 
 for every vertex u and v, u comes before v in the directed graph? If the grpah can be arranged topologically,
 then it does not contain cycles. Topological sort algorithms can usually be implemented in linear time.
@@ -49,6 +51,10 @@ A few follow up questions to investigate:
 1) Can BFS be used to cycle detection too?
 
 2) Consider undirected vs directed graphs. What are the impacts on cycle detection?
+
+3) Are there any benefits to using topological sorting vs DFS?
+
+4) Try implementing DFS recursively
 
 A few resources:
 
