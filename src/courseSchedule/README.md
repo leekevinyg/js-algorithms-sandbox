@@ -44,8 +44,6 @@ then it does not contain cycles. Topological sort algorithms can usually be impl
 
 **Important questions**
 
-1) Are there courses without prequisites? If yes, then we are working with a disconnected graph. If no, then the graph is a single connected component.
+1) Are their duplicate edges?
 
-2) Are their duplicate edges?
-
-3) How would this problem change if we were working with an undirected graph?
+2) How would this problem change if we were working with an undirected graph?
