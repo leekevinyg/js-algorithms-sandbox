@@ -1,4 +1,4 @@
-import { getNumberOfIslands } from '../../src/numberOfIslands/islands';
+import { getNumberOfIslands } from '../../src/numberOfIslands2/islands';
 import { expect } from 'chai';
 
 describe('Number of Islands problem', () => {
@@ -9,14 +9,6 @@ describe('Number of Islands problem', () => {
           [0, 0, 0],
       ];
       expect(getNumberOfIslands(grid)).to.equal(0);
-    });
-
-    it('returns 1 when passed a grid with all islands', () => {
-      const grid = [
-          [1, 1],
-          [1, 1],
-      ];
-      expect(getNumberOfIslands(grid)).to.equal(1);
     });
 
     it('returns 1 when passed a grid with all islands', () => {
