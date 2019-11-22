@@ -13,17 +13,18 @@ describe('Number of Islands problem', () => {
 
     it('returns 1 when passed a grid with all islands', () => {
       const grid = [
-          [1, 1],
-          [1, 1],
+          [1, 1, 1, 1],
+          [1, 1, 1, 1],
+          [1, 1, 1, 1],
       ];
       expect(getNumberOfIslands(grid)).to.equal(1);
     });
 
-    it('returns 1 when passed a grid with all islands', () => {
+    it('returns the number of islands present in grid with 1 island component', () => {
       const grid = [
-          [1, 1, 1, 1],
-          [1, 1, 1, 1],
-          [1, 1, 1, 1],
+          [1, 1, 0, 0],
+          [1, 1, 0, 0],
+          [1, 1, 0, 0],
       ];
       expect(getNumberOfIslands(grid)).to.equal(1);
     });

@@ -8,13 +8,9 @@ const getNeighboringIslands = (row : number, column : number, graph : number[][]
     const neighboringIslands = [];
 
     let northNode = null;
-    let northEastNode = null;
     let eastNode = null;
-    let southEastNode = null;
     let southNode = null;
-    let southWestNode = null;
     let westNode = null;
-    let northWestNode = null;
 
     if (row - 1 >= 0 && graph[row-1][column] === 1) {
         northNode = {
@@ -23,15 +19,6 @@ const getNeighboringIslands = (row : number, column : number, graph : number[][]
             column
         }
         neighboringIslands.push(northNode);
-    }
-
-    if (row - 1 >= 0 && column + 1 <= totalColumns - 1 && graph[row-1][column+1] === 1) {
-        northEastNode = {
-            id: getIdFromCoordinate(row-1, column+1, totalColumns),
-            row: row-1,
-            column: column+1
-        }
-        neighboringIslands.push(northEastNode);
     }
 
     if (column + 1 <= totalColumns - 1 && graph[row][column+1] === 1) {
@@ -43,15 +30,6 @@ const getNeighboringIslands = (row : number, column : number, graph : number[][]
         neighboringIslands.push(eastNode);
     }
 
-    if (column + 1 <= totalColumns - 1 && row + 1 <= totalRows - 1 && graph[row+1][column+1] === 1) {
-        southEastNode = {
-            id: getIdFromCoordinate(row+1, column+1, totalColumns),
-            row: row + 1,
-            column: column + 1
-        }
-        neighboringIslands.push(southEastNode);
-    }
-
     if (row + 1 <= totalRows - 1 && graph[row+1][column] === 1) {
         southNode = {
             id: getIdFromCoordinate(row+1, column, totalColumns),
@@ -61,15 +39,6 @@ const getNeighboringIslands = (row : number, column : number, graph : number[][]
         neighboringIslands.push(southNode);
     }
 
-    if (row + 1 <= totalRows - 1 && column-1 >= 0 && graph[row+1][column-1] === 1) {
-        southWestNode = {
-            id: getIdFromCoordinate(row+1, column-1, totalColumns),
-            row: row+1,
-            column: column-1
-        }
-        neighboringIslands.push(southWestNode);
-    }
-
     if (column - 1 >= 0 && graph[row][column-1] === 1) {
         westNode = {
             id: getIdFromCoordinate(row, column-1, totalColumns),
@@ -77,15 +46,6 @@ const getNeighboringIslands = (row : number, column : number, graph : number[][]
             column: column - 1 
         }
         neighboringIslands.push(westNode);
-    }
-
-    if (column - 1 >= 0 && row -1 >= 0 && graph[row-1][column-1] === 1) {
-        northWestNode = {
-            id: getIdFromCoordinate(row-1, column-1, totalColumns),
-            row: row - 1,
-            column: column - 1 
-        }
-        neighboringIslands.push(northWestNode);
     }
 
     return neighboringIslands;
