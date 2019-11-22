@@ -29,6 +29,16 @@ describe('Number of Islands problem', () => {
       expect(getNumberOfIslands(grid)).to.equal(1);
     });
 
+    it('returns the number of islands present in grid', () => {
+      const grid = [
+          [1, 1, 1, 1, 0],
+          [1, 1, 0, 1, 0],
+          [1, 1, 0, 0, 0],
+          [0, 0, 0, 0, 0],
+      ];
+      expect(getNumberOfIslands(grid)).to.equal(1);
+    });
+
     it('returns the number of islands present in grid with multiple water/multiple island components', () => {
       const grid = [
           [1, 0, 1, 1],

@@ -52,6 +52,9 @@ const getNeighboringIslands = (row : number, column : number, graph : number[][]
 }
 
 export const getNumberOfIslands = (graph : number[][]) : number => {
+    if (graph.length === 0) {
+        return 0;
+    }
     const totalRows : number = graph.length;
     const totalColumns : number = graph[0].length;
 
