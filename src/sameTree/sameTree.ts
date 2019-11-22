@@ -1,9 +1,15 @@
-const getDFSPath = (startNode) => {
-    const path = [];
-    const stack = [startNode];
+interface TreeNode {
+    val: number;
+    left: TreeNode;
+    right: TreeNode;
+};
+
+const getDFSPath = (startNode : TreeNode) : string => {
+    const path : number[] = [];
+    const stack : TreeNode[] = [startNode];
 
     while (stack.length > 0) {
-        const nextNode = stack.pop();
+        const nextNode : TreeNode = stack.pop();
 
         if (nextNode === null) {
             path.push(null);
@@ -20,6 +26,6 @@ const getDFSPath = (startNode) => {
     return path.toString();
 }
 
-export const sameTree = (p, q) => {
+export const sameTree = (p : TreeNode, q: TreeNode) : boolean => {
     return getDFSPath(p) === getDFSPath(q);
 }
