@@ -50,9 +50,19 @@ A few follow up questions to investigate:
 
 1) Can BFS be used to cycle detection too?
 
+For undirected graphs, when encountering a visited node indicates a cycle, BFS can be used as well.
+
+For directed graphs, we must use [Kahn's algorithm for topological sorting](https://www.geeksforgeeks.org/detect-cycle-in-a-directed-graph-using-bfs/)
+
 2) Consider undirected vs directed graphs. What are the impacts on cycle detection?
 
+An undirected graph has a cycle if and only if a depth-first search (DFS) finds an edge that points to an already-visited vertex (a back edge).
+
+For a directed graph, in addition to visited vertices we need to keep track of vertices currently in recursion stack of function for DFS traversal. If we reach a vertex that is already in the recursion stack, then there is a cycle in the tree.
+
 3) Are there any benefits to using topological sorting vs DFS?
+
+Time complexity for topo sort is the same as DFS i.e., O(V+E)
 
 4) Try implementing DFS recursively
 
