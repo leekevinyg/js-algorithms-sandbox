@@ -30,7 +30,9 @@ Input:
 **Solution**
 
 This problem can be reduced to the problem of finding the number of connected island components in the graph.
-To determine the connected island components we will start BFS at each island node. Each node that is part of the same tree will be marked with the same value. At the end, we simply count how many unique trees we have to determine the number of island components.
+To determine the connected island components we will start BFS at each island node. Each BFS call explores a connected
+component, and marks nodes it touches as visited. Since we only kick off BFS at nodes that have not been marked visited, BFS is only executed once for every connected island component in the graph. We simply need to return the 
+amount of times that BFS executes in order to get the number of unique island components present in the grid.
 
 **Resources**
 
