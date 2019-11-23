@@ -5,11 +5,11 @@ interface TreeNode {
 };
 
 const getDFSPath = (startNode : TreeNode) : string => {
-    const path = [];
-    const stack = [startNode];
+    const path : number[] = [];
+    const stack : TreeNode[] = [startNode];
 
     while (stack.length > 0) {
-        const node = stack.pop();
+        const node : TreeNode = stack.pop();
         path.push(node ? node.val : null);
         if (node === null) {
             continue;
@@ -34,9 +34,9 @@ export const subTree = (s : TreeNode, t: TreeNode) : boolean => {
         return true;
     }
 
-    const queue = [s];
+    const queue : TreeNode[] = [s];
     while (queue.length > 0) {
-        const node = queue.pop();
+        const node : TreeNode = queue.pop();
         if (node === null) {
             continue;
         }
