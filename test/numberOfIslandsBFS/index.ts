@@ -1,4 +1,4 @@
-import { getNumberOfIslands } from '../../src/numberOfIslands/islands';
+import { getNumberOfIslands } from '../../src/numberOfIslandsBFS/islands-bfs';
 import { expect } from 'chai';
 
 describe('Number of Islands problem', () => {

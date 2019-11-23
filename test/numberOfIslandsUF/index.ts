@@ -1,4 +1,4 @@
-import { getNumberOfIslands } from '../../src/numberOfIslands2/islands';
+import { getNumberOfIslands } from '../../src/numberOfIslandsUF/islands-union-find';
 import { expect } from 'chai';
 
 describe('Number of Islands problem', () => {
