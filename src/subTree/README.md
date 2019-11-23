@@ -6,8 +6,7 @@ Given two non-empty binary trees s and t, check whether tree t has exactly the s
 
 **Solution**
 
-Run DFS through tree s. At each node, check if the tree rooted at that node is the same tree as t using the solution
-presented in [sameTree](../sameTree/sameTree.ts).
+Run DFS through tree ```s```. At each node, check if the tree rooted at that node is the same tree as ```t``` using the solution presented in [sameTree](../sameTree/sameTree.ts).
 
 **Time and Space Complexity**
 TODO
