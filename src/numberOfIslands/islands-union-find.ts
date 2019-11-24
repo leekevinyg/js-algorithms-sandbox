@@ -3,7 +3,7 @@ import UnionFind from "./union-find";
 const getIdFromCoordinate = (row: number, column: number, totalColumns: number) : number => (
     totalColumns*row + column);
 
-export const getNumberOfIslands = (graph : number[][]) : number => {
+export const getNumberOfIslandsUF = (graph : number[][]) : number => {
     let connectedComponents : Set<number>;
     let waterComponents : number = 0;
     let totalRows : number = graph.length;

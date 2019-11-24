@@ -51,7 +51,7 @@ const getNeighboringIslands = (row : number, column : number, graph : number[][]
     return neighboringIslands;
 }
 
-export const getNumberOfIslands = (graph : number[][]) : number => {
+export const getNumberOfIslandsBFS = (graph : number[][]) : number => {
     if (graph.length === 0) {
         return 0;
     }

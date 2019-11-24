@@ -1,4 +1,4 @@
-<h2>Course Schedule</h3>
+<h2>Course Schedule - DFS Cycle Detection</h3>
 
 **Question**
 
