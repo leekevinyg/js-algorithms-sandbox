@@ -1,51 +1,56 @@
 import UnionFind from "./union-find";
 
-const getIdFromCoordinate = (row: number, column: number, totalColumns: number) : number => (
-    totalColumns*row + column);
+const getId = (row: number, column: number, totalColumns: number) : number => (
+    row*totalColumns + column);
 
-export const getNumberOfIslandsUF = (graph : number[][]) : number => {
-    let connectedComponents : Set<number>;
-    let waterComponents : number = 0;
-    let totalRows : number = graph.length;
-    let totalColumns : number = graph.length > 0 ? graph[0].length : 0;
-    let numberOfComponents = totalRows * totalColumns;
-    let uf : UnionFind = new UnionFind(numberOfComponents);
-    let valuesAtIds : number[] = new Array(numberOfComponents);
-    
-    for (let row = 0; row < totalRows; row++) {
-        for (let column = 0; column < totalColumns; column++) {
-            let currentNodeId = getIdFromCoordinate(row, column, totalColumns);
-            let currentNodeValue = graph[row][column];
-            valuesAtIds[currentNodeId] = currentNodeValue;
-            let newNodeId;
-            // check the node directly below
-            if (column+1 < totalColumns && graph[row][column+1] === currentNodeValue) {
-                newNodeId = getIdFromCoordinate(row, column+1, totalColumns);
-                uf.union(currentNodeId, newNodeId);
-            }
-            // check the node directly above
-            if (column-1 >= 0 && graph[row][column-1] == currentNodeValue) {
-                newNodeId = getIdFromCoordinate(row, column-1, totalColumns);
+export const getNumberOfIslandsUF = (grid : string[][]) : number => {
+    if (grid.length === 0) {
+        return 0;
+    }
+
+    let totalComponents = grid[0].length * grid.length;
+    let totalColumns = grid[0].length;
+    let maxColumnValue = grid[0].length - 1;
+    let maxRowValue = grid.length - 1;
+    let valuesAtNodeIds : Array<string> = new Array();
+
+    let uf = new UnionFind(totalComponents);
+    for (let row = 0; row <= maxRowValue; row++) {
+        for (let column = 0; column <= maxColumnValue; column++) {
+            let currentNodeId = getId(row, column, totalColumns);
+            let currentNodeValue = grid[row][column];
+            valuesAtNodeIds[currentNodeId] = currentNodeValue;
+            // check the node to the right
+            if (column+1 <= maxColumnValue && grid[row][column+1] === currentNodeValue) {
+                let newNodeId = getId(row, column+1, totalColumns);
                 uf.union(currentNodeId, newNodeId);
             }
             // check the node to the left
-            if (row-1 >= 0 && graph[row-1][column] == currentNodeValue) {
-                newNodeId = getIdFromCoordinate(row-1, column, totalColumns);
+            if (column-1 >= 0 && grid[row][column-1] === currentNodeValue) {
+                let newNodeId = getId(row, column-1, totalColumns);
                 uf.union(currentNodeId, newNodeId);
             }
-            // check the node to the right
-            if (row+1 < totalRows && graph[row+1][column] == currentNodeValue) {
-                newNodeId = getIdFromCoordinate(row+1, column, totalColumns);
+            // check the node above
+            if (row-1 >= 0 && grid[row-1][column] === currentNodeValue) {
+                let newNodeId = getId(row-1, column, totalColumns);
+                uf.union(currentNodeId, newNodeId);
+            }
+            // check the node below
+            if (row+1 <= maxRowValue && grid[row+1][column] === currentNodeValue) {
+                let newNodeId = getId(row+1, column, totalColumns);
                 uf.union(currentNodeId, newNodeId);
             }
         }
     }
 
-    connectedComponents = uf.getUniqueRoots();
-    connectedComponents.forEach(componentId => {
-        if (valuesAtIds[componentId] === 0) {
-            waterComponents++;
+    // get the total number of connected components, and then subtract any water components
+    // to get the total number of islands
+    let uniqueRoots = uf.getTotalComponents();
+    let numberOfWaterComponents = 0;
+    for (let rootId in uniqueRoots) {
+        if (valuesAtNodeIds[rootId] === '0') {
+            numberOfWaterComponents++;
         }
-    });
-    return connectedComponents.size - waterComponents;
+    }
+    return uniqueRoots.length - numberOfWaterComponents;
 }
