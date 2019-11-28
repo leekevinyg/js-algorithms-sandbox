@@ -29,18 +29,15 @@ Return:
 
 [[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]] (positions with parentheses in above matrix).
 
-**Solution**
+**Solution 1**
 
-Connect all Pacific Ocean edge nodes i.e., nodes along the top and left edges to a 'fake' Pacific Ocean root
-node. 
+Run BFS from each node in the graph, only adding neighbors into the search frontier if they meet the flow (height) requirements. If the graph reaches BOTH the atlantic and pacific ocean roots, then add it to our list of grid coordinates that we will return.
 
-Connect all Atlantic Ocean edge nodes i.e., nodes along the bottom and right edges to a 'fake' Atlantic Ocean
-root node.
+**Solution 1 Time Complexity**
 
-Run BFS from each node in the graph, only adding neighbors into the search frontier if they meet the flow (height) requirements. If the graph reaches BOTH the atlantic and pacific ocean roots, then add it to our list of grid coordinates
-that we will return.
+O(n^2). Each time we run BFS from a node, we touch every node a maximum of once. Since we run BFS for every node, this solution is O(n^2).
 
-**Unused Info**
+**Notes**
 
 - m and n being less than 150
-- the order of the grid coordinates not mattering - (read: doesn't matter if you use DFS or BFS)
+- "the order of the grid coordinates not mattering" (read: doesn't matter if you use DFS or BFS)
