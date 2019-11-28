@@ -1,4 +1,4 @@
-import pacificAtlantic from '../../src/waterFlow/waterFlow';
+import pacificAtlantic from '../../src/waterFlow/waterflow';
 import { expect } from 'chai';
 
 describe('Water Flow Problem', () => {

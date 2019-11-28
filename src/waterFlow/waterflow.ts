@@ -1,7 +1,7 @@
 const getIdFromCoordinate = (row : number, col : number, totalColumns: number) : number => {
     return totalColumns * row + col;
 }
-// Runs BFS from a given coordinate value, and returns true if a pathway to both oceans exists from that coordiante
+// Runs DFS from a given coordinate value, and returns true if a pathway to both oceans exists from that coordiante
 const existsPathwayToOceans = (row : number, column : number, matrix : number[][]) : boolean => {
     const visited = [];
     const totalRows = matrix.length;
@@ -38,16 +38,16 @@ const existsPathwayToOceans = (row : number, column : number, matrix : number[][
         let bottomValue = x + 1 < totalRows ? matrix[x+1][y] : null;
 
         if (typeof leftValue === "number" && leftValue <= currentValue) {
-            queue.unshift([x, y-1]);
+            queue.push([x, y-1]);
         }
         if (typeof rightValue === "number" && rightValue <= currentValue) {
-            queue.unshift([x, y + 1]);
+            queue.push([x, y + 1]);
         }
         if (typeof topValue === "number" && topValue <= currentValue) {
-            queue.unshift([x-1, y]);
+            queue.push([x-1, y]);
         }
         if (typeof bottomValue === "number" && bottomValue <= currentValue) {
-            queue.unshift([x+1, y]);
+            queue.push([x+1, y]);
         }
     }
 
