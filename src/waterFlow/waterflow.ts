@@ -37,13 +37,13 @@ const existsPathwayToOceans = (row : number, column : number, matrix : number[][
         let topValue = x - 1 >= 0 ? matrix[x-1][y] : null;
         let bottomValue = x + 1 < totalRows ? matrix[x+1][y] : null;
 
-        if (typeof leftValue === "number" && leftValue >= currentValue) {
+        if (typeof leftValue === "number" && leftValue <= currentValue) {
             queue.unshift([x, y-1]);
         }
         if (typeof rightValue === "number" && rightValue <= currentValue) {
             queue.unshift([x, y + 1]);
         }
-        if (typeof topValue === "number" && topValue >= currentValue) {
+        if (typeof topValue === "number" && topValue <= currentValue) {
             queue.unshift([x-1, y]);
         }
         if (typeof bottomValue === "number" && bottomValue <= currentValue) {
