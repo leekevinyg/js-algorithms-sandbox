@@ -41,8 +41,8 @@ O(n^2), where n is the number of nodes. Each time we run DFS from a node, we tou
 
 **Solution 2**
 
-Instead of doing DFS from every node, we just do DFS from the nodes that border each ocean. We keep track the visited nodes from each of the respective oceans. Once we have traversed the DFS tree for all the ocean nodes, we simply iterate through the nodes and add positions that have been visited from both the Atlantic and Pacific oceans into the array list.
+Instead of doing DFS from every node, we just do DFS from the nodes that border each ocean. The search then "flows in" from each of the ocean nodes to the land nodes. We keep track of nodes that are accessible from each of the two respective oceans in separate 2D ```visited``` boolean arrays. Once we have completed our DFS searchs, we simply iterate through the nodes and return the position of any nodes that have been visited by BOTH the Atlantic and Pacific oceans.
 
 **Solution 2 Time Complexity**
 
-This solution is O(n).
+We run DFS 2(mxn) times. We then iterate through (mxn) nodes to construct our return list. If n represents the total number of nodes, our solution reduces to O(n).
