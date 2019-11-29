@@ -37,7 +37,7 @@ Run DFS from each node in the graph, only adding neighbors into the search front
 
 **Solution 1 Time Complexity**
 
-O(n^2), where n is the number of nodes. Each time we run DFS from a node, we touch every node a maximum of once. Since we run BFS for every node, this solution is O(n^2).
+O(n^2), where n is the number of nodes. Each time we run DFS from a node, we touch every node a maximum of once. Since we run DFS for every node, this solution is O(n^2).
 
 **Solution 2**
 
