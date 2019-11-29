@@ -1,13 +1,14 @@
-import pacificAtlantic from '../../src/waterFlow/waterflow';
+import pacificAtlanticBruteForce from '../../src/waterFlow/waterflow';
+import pacificAtlanticDFSFromOcean from '../../src/waterFlow/waterflow2';
 import { expect } from 'chai';
 
-describe('Water Flow Problem', () => {
+describe('Water Flow Problem - Brute Force', () => {
     it('return all nodes in a simple matrix - water can flow in all directions', () => {
       const matrix = [
           [0,0,0]
       ];
 
-      expect(JSON.stringify(pacificAtlantic(matrix))).to.equal(JSON.stringify([[0,0], [0,1], [0,2]]));
+      expect(JSON.stringify(pacificAtlanticBruteForce(matrix))).to.equal(JSON.stringify([[0,0], [0,1], [0,2]]));
     });
 
     it('return all nodes in a simple matrix - water can flow right and up', () => {
@@ -16,7 +17,7 @@ describe('Water Flow Problem', () => {
             [1,1,1]
         ];
   
-        expect(JSON.stringify(pacificAtlantic(matrix))).to.equal(
+        expect(JSON.stringify(pacificAtlanticBruteForce(matrix))).to.equal(
             JSON.stringify([[0,0], [0,1], [0,2], [1,0], [1,1], [1,2]])
         );
     });
@@ -30,7 +31,42 @@ describe('Water Flow Problem', () => {
             [5,1,1,2,4]
         ];
 
-        expect(JSON.stringify(pacificAtlantic(matrix))).to.equal(
+        expect(JSON.stringify(pacificAtlanticBruteForce(matrix))).to.equal(
+            JSON.stringify([[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]])
+        );
+    })
+});
+
+describe('Water Flow Problem - start DFS from Ocean', () => {
+    it('return all nodes in a simple matrix - water can flow in all directions', () => {
+      const matrix = [
+          [0,0,0]
+      ];
+
+      expect(JSON.stringify(pacificAtlanticDFSFromOcean(matrix))).to.equal(JSON.stringify([[0,0], [0,1], [0,2]]));
+    });
+
+    it('return all nodes in a simple matrix - water can flow right and up', () => {
+        const matrix = [
+            [0,0,0],
+            [1,1,1]
+        ];
+  
+        expect(JSON.stringify(pacificAtlanticDFSFromOcean(matrix))).to.equal(
+            JSON.stringify([[0,0], [0,1], [0,2], [1,0], [1,1], [1,2]])
+        );
+    });
+
+    it('return nodes where water can flow to both atlantic and pacific oceans', () => {
+        const matrix = [
+            [1,2,2,3,5],
+            [3,2,3,4,4],
+            [2,4,5,3,1],
+            [6,7,1,4,5],
+            [5,1,1,2,4]
+        ];
+
+        expect(JSON.stringify(pacificAtlanticDFSFromOcean(matrix))).to.equal(
             JSON.stringify([[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]])
         );
     })

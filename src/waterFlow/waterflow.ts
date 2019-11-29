@@ -6,12 +6,12 @@ const existsPathwayToOceans = (row : number, column : number, matrix : number[][
     const visited = [];
     const totalRows = matrix.length;
     const totalColumns = matrix[0] ? matrix[0].length : 0;
-    const queue = [[row, column]];
+    const stack = [[row, column]];
     let haveTouchedAtlantic = false;
     let haveTouchedPacific = false;
     
-    while (queue.length > 0) {
-        const currentCoordinate = queue.pop();
+    while (stack.length > 0) {
+        const currentCoordinate = stack.pop();
         let x = currentCoordinate[0];
         let y = currentCoordinate[1];
         let currentValue = matrix[x][y];
@@ -38,16 +38,16 @@ const existsPathwayToOceans = (row : number, column : number, matrix : number[][
         let bottomValue = x + 1 < totalRows ? matrix[x+1][y] : null;
 
         if (typeof leftValue === "number" && leftValue <= currentValue) {
-            queue.push([x, y-1]);
+            stack.push([x, y - 1]);
         }
         if (typeof rightValue === "number" && rightValue <= currentValue) {
-            queue.push([x, y + 1]);
+            stack.push([x, y + 1]);
         }
         if (typeof topValue === "number" && topValue <= currentValue) {
-            queue.push([x-1, y]);
+            stack.push([x - 1, y]);
         }
         if (typeof bottomValue === "number" && bottomValue <= currentValue) {
-            queue.push([x+1, y]);
+            stack.push([x + 1, y]);
         }
     }
 
