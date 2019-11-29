@@ -45,4 +45,4 @@ Instead of doing DFS from every node, we just do DFS from the nodes that border 
 
 **Solution 2 Time Complexity**
 
-We run DFS 2(mxn) times. We then iterate through (mxn) nodes to construct our return list. If n represents the total number of nodes, our solution reduces to O(n).
+We run DFS ```2(m x n)``` times. We then iterate through ```(m x n)``` nodes to construct our return list. This is ```O(m x n) or O(n)``` if n represents the total number of nodes.
