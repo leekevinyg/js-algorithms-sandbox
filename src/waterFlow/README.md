@@ -16,6 +16,7 @@ Both m and n are less than 150.
 Example:
 
 Given the following 5x5 matrix:
+<pre>
 
   Pacific ~   ~   ~   ~   ~  
        ~  1   2   2   3  (5) *  
@@ -24,6 +25,7 @@ Given the following 5x5 matrix:
        ~ (6) (7)  1   4   5  *  
        ~ (5)  1   1   2   4  *  
           *   *   *   *   * Atlantic  
+</pre>
 
 Return:
 
