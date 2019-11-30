@@ -71,19 +71,16 @@ export const getNumberOfIslandsBFS = (graph : number[][]) : number => {
                 row,
                 column,
             };
-            if (isIslandNode && !visited.includes(startNode.id)) {
+            if (isIslandNode) {
                 // explore tree from island node with bfs and, for each connected component explored, increment uniqueTreesCounter.
                 let queue = [startNode];
                 while (queue.length > 0) {
                     const nextNode = queue.pop();
-                    if (visited.includes(nextNode.id)) {
-                        continue;
-                    }
-                    visited.push(nextNode.id);
                     let neighbors = getNeighboringIslands(nextNode.row, nextNode.column, graph);
                     for (let i=0; i<neighbors.length; i++) {
                         queue.unshift(neighbors[i]);
                     }
+                    graph[nextNode.row][nextNode.column] = 0;
                 }
                 uniqueTreesCounter++;
             }
