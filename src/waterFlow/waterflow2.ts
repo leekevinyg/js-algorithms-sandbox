@@ -36,7 +36,6 @@ const DFS = (row: number, column: number, matrix: number[][], visited: boolean[]
     return visited;
 }
 
-
 const pacificAtlantic = (matrix : number[][]) : number[][] => {
     if (matrix === null || matrix.length === 0 || matrix[0].length === 0) {
         return [];
