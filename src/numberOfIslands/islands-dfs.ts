@@ -51,7 +51,7 @@ const getNeighboringIslands = (row : number, column : number, graph : number[][]
     return neighboringIslands;
 }
 
-export const getNumberOfIslandsBFS = (graph : number[][]) : number => {
+export const getNumberOfIslandsDFS = (graph : number[][]) : number => {
     if (graph.length === 0) {
         return 0;
     }
@@ -72,13 +72,13 @@ export const getNumberOfIslandsBFS = (graph : number[][]) : number => {
                 column,
             };
             if (isIslandNode) {
-                // explore tree from island node with bfs and, for each connected component explored, increment uniqueTreesCounter.
+                // explore tree from island node with dfs and, for each connected component explored, increment uniqueTreesCounter.
                 let queue = [startNode];
                 while (queue.length > 0) {
                     const nextNode = queue.pop();
                     let neighbors = getNeighboringIslands(nextNode.row, nextNode.column, graph);
                     for (let i=0; i<neighbors.length; i++) {
-                        queue.unshift(neighbors[i]);
+                        queue.push(neighbors[i]);
                     }
                     graph[nextNode.row][nextNode.column] = 0;
                 }
