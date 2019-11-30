@@ -1,15 +1,15 @@
-import { getNumberOfIslandsBFS } from '../../src/numberOfIslands/islands-bfs';
+import { getNumberOfIslandsDFS as getNumberOfIslandsDFS } from '../../src/numberOfIslands/islands-dfs';
 import { getNumberOfIslandsUF } from '../../src/numberOfIslands/islands-union-find';
 import { expect } from 'chai';
 
-describe('Number of Islands problem - BFS Solution', () => {
+describe('Number of Islands problem - DFS Solution', () => {
     it('returns 0 when passed a grid with no islands', () => {
       const grid = [
           [0, 0, 0],
           [0, 0, 0],
           [0, 0, 0],
       ];
-      expect(getNumberOfIslandsBFS(grid)).to.equal(0);
+      expect(getNumberOfIslandsDFS(grid)).to.equal(0);
     });
 
     it('returns 1 when passed a grid with all islands', () => {
@@ -18,7 +18,7 @@ describe('Number of Islands problem - BFS Solution', () => {
           [1, 1, 1, 1],
           [1, 1, 1, 1],
       ];
-      expect(getNumberOfIslandsBFS(grid)).to.equal(1);
+      expect(getNumberOfIslandsDFS(grid)).to.equal(1);
     });
 
     it('returns the number of islands present in grid with 1 island component', () => {
@@ -27,7 +27,7 @@ describe('Number of Islands problem - BFS Solution', () => {
           [1, 1, 0, 0],
           [1, 1, 0, 0],
       ];
-      expect(getNumberOfIslandsBFS(grid)).to.equal(1);
+      expect(getNumberOfIslandsDFS(grid)).to.equal(1);
     });
 
     it('returns the number of islands present in grid', () => {
@@ -37,7 +37,7 @@ describe('Number of Islands problem - BFS Solution', () => {
           [1, 1, 0, 0, 0],
           [0, 0, 0, 0, 0],
       ];
-      expect(getNumberOfIslandsBFS(grid)).to.equal(1);
+      expect(getNumberOfIslandsDFS(grid)).to.equal(1);
     });
 
     it('returns the number of islands present in grid with multiple water/multiple island components', () => {
@@ -46,11 +46,11 @@ describe('Number of Islands problem - BFS Solution', () => {
           [1, 0, 1, 0],
           [1, 1, 0, 1],
       ];
-      expect(getNumberOfIslandsBFS(grid)).to.equal(3);
+      expect(getNumberOfIslandsDFS(grid)).to.equal(3);
     });
 });
 
-describe('Number of Islands problem - union find solution', () => {
+xdescribe('Number of Islands problem - union find solution', () => {
     it('returns 0 when passed a grid with no islands', () => {
       const grid = [
           ['0', '0', '0'],
