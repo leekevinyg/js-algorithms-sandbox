@@ -31,6 +31,7 @@ parent node, we want to support the following 2 operations:
     nodes parent recursively or with a while loop until the pointer does not 
     change.
 
-An example implementation [here](../src/numberOfIslands/union-find.ts).
+An example implementation [here](../src/numberOfIslands/union-find.ts).  
+
 More info in a video [here](https://www.coursera.org/learn/algorithms-part1/lecture/fjxHC/dynamic-connectivity). 
 
