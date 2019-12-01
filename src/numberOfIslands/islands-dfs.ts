@@ -59,7 +59,6 @@ export const getNumberOfIslandsDFS = (graph : number[][]) : number => {
     const totalColumns : number = graph[0].length;
 
     let uniqueTreesCounter = 0;
-    let visited : number[] = [];
 
     for (let row : number = 0; row<totalRows; row++) {
         for (let column : number = 0; column<totalColumns; column++) {
