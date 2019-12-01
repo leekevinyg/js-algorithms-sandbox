@@ -16,11 +16,16 @@ to null.
 
 ![Linked List](./images/linked-list.png)
 
-To **push** an item onto the stack we store a reference to the old first node, add the new
-node at the beginning, and point the new node to the “old” first node.
+To **push** an item onto the stack we:
 
-To **pop** an item from the list we simply return the value of the head node and and have 
-that nodes next property become the new head node.
+- store a reference to the old first node
+- add the new node at the head of the list
+- point the new node to the “old” first node.
+
+To **pop** an item from the list we:
+
+- return the value of the head node
+- have the head nodes "next" property become the new head node.
 
 **isEmpty** just needs to check whether the head node has a value.
 
@@ -28,4 +33,4 @@ All operations on the linked list can be done in O(n) time complexity.
 
 Storing the linked list is O(n) space.
 
-![Java Implementation](./images/java-linked-list-stack-of-strings.png)
+![Java Implementation](./images/java-stack-of-strings.png)
