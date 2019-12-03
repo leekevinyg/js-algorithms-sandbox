@@ -29,4 +29,15 @@ start tracking the nodes that we have seen. When we see a neighbor of a node tha
 we can union them together using the union find data structure. At the end, we just return the number of 
 items in the largest tree.
 
+**Time and Space Complexity**
+
+1.
+
+TODO, study up on quicksort
+
+2.
+
+O(n) time and space. Javascript map operations are [linear](https://stackoverflow.com/a/31092145/1718640), and our union() operation is O(lg n).
+
+
 
