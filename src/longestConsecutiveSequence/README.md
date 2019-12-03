@@ -24,7 +24,7 @@ data structure to get the longest consecutive sequence.
 
 **Time and Space Complexity**
 
-O(n) time and space. Javascript map operations are [linear](https://stackoverflow.com/a/31092145/1718640), and our union() operation is O(lg n) with out [weighted union find](../../notes/union-find.md) data structure.
+O(n) time and space. Javascript map operations are [linear](https://stackoverflow.com/a/31092145/1718640), and our union() operation is O(lg n) with our [weighted union find](../../notes/union-find.md) data structure.
 
 
 
