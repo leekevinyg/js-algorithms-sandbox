@@ -37,8 +37,11 @@ TODO, study up on quicksort
 
 2.
 
-We iterate through the array elements once. Javascript map operations are [linear](https://stackoverflow.com/a/31092145/1718640), 
-and our union() operation is O(lg n). This makes our solution O(n^2).
+Our space complexity is O(n), as we allocate linear space for the hashtable and array in our UF data structure.
+
+Our time complexity is O(n^2) since inside the for loop, we have javascript [linear](https://stackoverflow.com/a/31092145/1718640) map opeations, as well as a lg n union operation.
+
+
 
 
 
