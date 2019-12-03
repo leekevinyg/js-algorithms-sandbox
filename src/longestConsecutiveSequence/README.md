@@ -16,28 +16,15 @@ Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefor
 
 **Solution**
 
-Ways to approach:
-
-1.
-
-Sort it using quicksort, and then return longest consecutive sequence of items that are 1 away.
-
-2.
-
 We can think of each number as a node in a graph. As we iterate through the input array, we 
 start tracking the nodes that we have seen. When we see a neighbor of a node that we have seen before,
-we can union them together using the union find data structure. At the end, we just return the number of 
-items in the largest tree.
+we can union them together using the union find data structure. Since we are keeping track of tree sizes
+in our UF data structure to maintain O(lg n) union/find complexity, we just output the max size tree in our UF 
+data structure to get the longest consecutive sequence.
 
 **Time and Space Complexity**
 
-1.
-
-TODO, study up on quicksort
-
-2.
-
-O(n) time and space. Javascript map operations are [linear](https://stackoverflow.com/a/31092145/1718640), and our union() operation is O(lg n).
+O(n) time and space. Javascript map operations are [linear](https://stackoverflow.com/a/31092145/1718640), and our union() operation is O(lg n) with out [weighted union find](../../notes/union-find.md) data structure.
 
 
 
