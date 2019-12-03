@@ -33,13 +33,13 @@ items in the largest tree.
 
 1.
 
-TODO, study up on quicksort
+TODO, study up on quicksort. This solution is O(nlgn).
 
 2.
 
 Our space complexity is O(n), as we allocate linear space for the hashtable and array in our UF data structure.
 
-Our time complexity is O(n^2) since inside the for loop, we have javascript [linear](https://stackoverflow.com/a/31092145/1718640) map opeations, as well as a lg n union operation.
+Our time complexity is O(nlgn) since inside the for loop, we just have O(1) lookups and O(lgn) union operations.
 
 
 
