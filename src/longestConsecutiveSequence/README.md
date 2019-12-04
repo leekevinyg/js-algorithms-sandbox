@@ -38,7 +38,9 @@ items in the largest tree.
 
 1.
 
-O(n^3). The for loop executes n times, the while loop can execute n times and performs an O(n) lookup each time.
+O(n^3) time. The for loop executes n times, the while loop can execute n times and performs an O(n) lookup each time.
+
+O(1) space. This method only allocates a handful of integers.
 
 2.
 
@@ -48,7 +50,7 @@ TODO, study up on quicksort and implement. This solution is O(nlgn).
 
 Our space complexity is O(n), as we allocate linear space for the hashtable and array in our UF data structure.
 
-Our time complexity is O(nlgn) since inside the for loop, we just have O(1) lookups and O(lgn) union operations.
+Our time complexity is O(nlgn) since inside the for loop, we just have avg case O(1) lookups and O(lgn) union operations.
 
 
 
