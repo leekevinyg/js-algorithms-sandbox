@@ -20,20 +20,29 @@ Ways to approach:
 
 1.
 
-Sort it using quicksort, and then return longest consecutive sequence of items that are 1 away.
+Brute force. Iterate through the array and count as high as possible using only numbers in the array.
 
 2.
+
+Sort it using quicksort, and then return longest consecutive sequence of items that are 1 away.
+
+3.
 
 We can think of each number as a node in a graph. As we iterate through the input array, we 
 start tracking the nodes that we have seen. When we see a neighbor of a node that we have seen before,
 we can union them together using the union find data structure. At the end, we just return the number of 
 items in the largest tree.
 
+
 **Time and Space Complexity**
 
 1.
 
-TODO, study up on quicksort. This solution is O(nlgn).
+O(n^3). The for loop executes n times, the while loop can execute n times and performs an O(n) lookup each time.
+
+2.
+
+TODO, study up on quicksort and implement. This solution is O(nlgn).
 
 2.
 
