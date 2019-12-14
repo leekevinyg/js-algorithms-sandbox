@@ -15,6 +15,10 @@ describe('Course Schedule problem', () => {
         expect(canFinishAllCourses(2, [[1, 0], [0, 1]])).to.equal(false);
     });
 
+    it('returns false when passed 2 courses that are pre-reqs of each other', () => {
+        expect(canFinishAllCourses(2, [[0, 1], [1, 0]])).to.equal(false);
+    });
+
     it('returns false when courses passed in form a cycle', () => {
         expect(canFinishAllCourses(3, [[1,0], [1,2], [0,1]])).to.equal(false);
         expect(canFinishAllCourses(4, [[0,1], [0, 2], [1,0], [2,0], [2,3], [3,3]])).to.equal(false);

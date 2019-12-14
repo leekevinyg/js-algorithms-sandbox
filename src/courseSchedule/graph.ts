@@ -57,9 +57,7 @@ export class Graph implements IGraph {
 
         for (let node=0; node < this.totalNodes; node++) {
             if (visited[node] === false) {
-                if (this.topoSortHelper(node, visited, tempStack, recStack)) {
-                    return undefined; // a cycle exists, no topo sort possible
-                };
+                this.topoSortHelper(node, visited, tempStack, recStack)
             }
         }
 
