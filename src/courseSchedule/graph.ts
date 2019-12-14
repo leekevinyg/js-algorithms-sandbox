@@ -1,17 +1,18 @@
 interface IGraph {
     addEdge(edge : number[]) : void;
-    isCyclicDFS(startNode : number) : boolean;
+    topoSort() : number[];
 }
 
 export class Graph implements IGraph {
     // a map of a vertex (key) to it's number[] of neighboring tail verticies
     private adjList : object;
-    private visited : number[];
-    private currentPath : number[];
+    private totalNodes : number;
+    private isCyclic : boolean;
 
-    constructor() {
+    constructor(numNodes : number) {
         this.adjList = {};
-        this.visited = [];
+        this.totalNodes = numNodes;
+        this.isCyclic = false;
     }
 
     public addEdge(edge: number[]) : void {
@@ -25,32 +26,52 @@ export class Graph implements IGraph {
         }
     }
 
-    public isCyclicDFS(startNode : number) : boolean {
-        let isCyclic : boolean = false;
-        let stack : number[] = [startNode];
-        this.currentPath = [];
+    // return value represents whether graph is cyclic or not
+    private topoSortHelper(startNode : number, visited: boolean[], stack : number[], recStack : boolean[]) : boolean {
+        visited[startNode] = true;
+        recStack[startNode] = true;
 
-        while (stack.length > 0) {
-            let currNode : number = stack.pop();
-            if (this.currentPath.includes(currNode)) {
-                isCyclic = true;
-                break;
+        let neighbors = this.adjList[startNode];
+        for (let i=0; neighbors && i < neighbors.length; i++) {
+            if (recStack[neighbors[i]]) {
+                this.isCyclic = true;
             }
-            if (this.visited.includes(currNode)) {
-                continue;
-            }
-            this.visited.push(currNode);
-            this.currentPath.push(currNode);
-            let neighbors : number[] = this.adjList[currNode];
-            if (!neighbors) {
-                // we are at a leaf node, and about to backtrack, clear current node from recursion stack
-                this.currentPath = this.currentPath.filter(node => node !== currNode);
-                continue;
-            }
-            for (let i=0; i < neighbors.length; i++) {
-                stack.push(neighbors[i]);
+            if (visited[neighbors[i]] === false) {
+                this.topoSortHelper(neighbors[i], visited, stack, recStack);
             }
         }
-        return isCyclic;
+        recStack[startNode] = false;
+        stack.push(startNode);
+        return false;
+    }
+
+    public topoSort() : number[] {
+        let recStack = [];
+        let tempStack : number[] = [];
+        let visited = [];
+
+        for (let node=0; node < this.totalNodes; node++) {
+            visited[node] = false;
+            recStack[node] = false;
+        }
+
+        for (let node=0; node < this.totalNodes; node++) {
+            if (visited[node] === false) {
+                if (this.topoSortHelper(node, visited, tempStack, recStack)) {
+                    return undefined; // a cycle exists, no topo sort possible
+                };
+            }
+        }
+
+        if (this.isCyclic) {
+            return undefined;
+        }
+
+        let topoSortedStack = [];
+        while (tempStack.length > 0) {
+            topoSortedStack.push(tempStack.pop());
+        }
+
+        return topoSortedStack;
     }
 }

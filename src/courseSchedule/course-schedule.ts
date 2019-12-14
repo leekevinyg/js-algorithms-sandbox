@@ -5,17 +5,14 @@ function canFinishAllCourses(numCourses : number, prerequisites : number[][]) : 
         return true;
     }
 
-    let graph : Graph = new Graph();
+    let graph : Graph = new Graph(numCourses);
     for (let i = 0; i < prerequisites.length; i++) {
         graph.addEdge(prerequisites[i]);
     }
 
-    for (let node=0; node < numCourses - 1; node++) {
-        if (graph.isCyclicDFS(node)) {
-            return false;
-        }
-    }
-    return true;
+    let topoSortedArray = graph.topoSort();
+
+    return topoSortedArray ? topoSortedArray.length > 0 : false;
 }
 
 export default canFinishAllCourses;
