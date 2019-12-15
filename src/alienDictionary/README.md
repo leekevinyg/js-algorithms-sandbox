@@ -77,31 +77,57 @@ more complicated array:
 
 <pre>
 [
-    "ab"
-    "cz"
+    "az"
+    "cb"
 ]
 </pre>
 
-In the first column we can derive the edge ```[a, c]```.
-In the second column we can derive the edge ```[b, z]```.
-For every letter position we must generate a prerequisite pair with the letter in the next row, but same column.
-
-We also need to consider duplicates:
+In the first column we can derive the edge ```[a, c]```, representing the fact that a comes before c lexographically
+in this alient alphabet.
+For the second column we are unable to derive relationship, unless everything before the letters we want to compare is
+the same. To compare letters above the first position in each row, we must check that everything preceding the letters
+we want to compare is the same:
 
 <pre>
 [
-    "aa"
-    "ca"
+  "abc"
+  "abd"
 ]
 </pre>
 
-Here we can derive that ```[a, c]``` is a necessary prerequsite, but we will ignore the fact that ```a``` is a
-prerequisite of ```a```, since for our problem space this is meaningless.
+At column three, we can derive ```[c, d]```, since in both the words we want to compare, the letters are the same up until
+that point.
 
-Once we have a prerequisite edge list, this problem becomes a variant of the course schedule problem, which we can solve
-in O(V+E) with topological sort.
+The last thing we need to watch out for is duplicate letters:
 
-To detect if an ordering is not possible, we simply have to detect if there is a cycle in our graph.
+<pre>
+[
+  "abb"
+  "abc"
+]
+</pre>
+
+It is not necessary to derive the edges ```[a, a]``` and ```[b, b]``` here, since this is meaningless in our problem space.
+
+To detect if an ordering is not possible, or the words given in the input are not alphabetically sorted, we simply have to 
+detect if there is a cycle in our DAG represented by our edges.
+
+**Plan**
+
+1) Parse the words array into prerequisite edges representing 
+
+2) Construct a graph from the prerequisite edges.
+
+3) Topologically sort the graph (return [] if a cycle is found).
+
+We will need:
+
+1) A double for loop 
+2) A graph class, with an ability to add edges, as well as topological sort them.
+
+To topologically sort, we will use recursive DFS, and keep track of a stack (outside of the call stack),
+that records the nodes where all their children have already been explored. We simply reverse this list to get
+the topological ordering.
 
 
 
