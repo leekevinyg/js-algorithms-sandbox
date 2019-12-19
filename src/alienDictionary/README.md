@@ -67,14 +67,15 @@ In this word list:
 - a must come before b
 - b must come before c
 
-```[a, b]``` and ```[b, c]``` can be thought of as directed edges where a is a prerequisite of b,
-and b is a prerequisite of c.
+```[a, b]``` and ```[b, c]``` can be thought of as directed edges where ```a``` alphabetically precedes ```b``` and 
+```b``` alphabetically preceds ```c```.
 
-Then, this problem becomes running a topological sort on the list of edges generated from the words array.
+Then, this problem becomes running a topological sort on the list of alphabetically precedent edges generated 
+from the words array.
 
-To generate the edges, we simply parse the words column by column. To think about this we can use a slightly 
-more complicated array:
+To generate the edges, we simply continue to compare letters among the words to establish precedent relationships.
 
+Example:
 <pre>
 [
     "az"
@@ -98,7 +99,7 @@ we want to compare is the same:
 At column three, we can derive ```[c, d]```, since in both the words we want to compare, the letters are the same up until
 that point.
 
-The last thing we need to watch out for is duplicate letters:
+We also need to be careful to watch out for duplicate letters:
 
 <pre>
 [
