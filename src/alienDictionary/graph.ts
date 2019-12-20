@@ -6,49 +6,28 @@ interface IGraph {
 }
 
 class Graph implements IGraph {
-    totalVerticies : number;
     adjList : object;
-    alphabetTable : object;
+    vertexList : object;
+    isCyclic : boolean;
 
     constructor() {
-        this.totalVerticies = 26; // alien dictionary uses latin alphabet
-        this.alphabetTable = {
-            'a': 1,
-            'b': 2,
-            'c': 3,
-            'd': 4,
-            'e': 5,
-            'f': 6,
-            'g': 7,
-            'h': 8,
-            'i': 9,
-            'j': 10,
-            'k': 11,
-            'l': 12,
-            'm': 13,
-            'n': 14,
-            'o': 15,
-            'p': 16,
-            'q': 17,
-            'r': 18,
-            's': 19,
-            't': 20,
-            'u': 21,
-            'v': 22,
-            'w': 23,
-            'x': 24,
-            'y': 25,
-            'z': 26,
-        };
         this.adjList = {};
+        this.vertexList = {};
+        this.isCyclic = false;
     }
 
     public addEdge(edge : string[]) : void {
         const head = edge[0];
         const tail = edge[1];
-        const existingEdges = this.adjList[head];
 
-        if (existingEdges) {
+        if (!this.vertexList[head]) {
+            this.vertexList[head] = true;
+        }
+        if (!this.vertexList[tail]) {
+            this.vertexList[tail] = true;
+        }
+
+        if (this.adjList[head]) {
             this.adjList[head] = [
                 ...this.adjList[head],
                 tail
@@ -58,35 +37,52 @@ class Graph implements IGraph {
         }
     }
 
-    private topoSortDFS(node : number, visited : boolean[], topoSorted : string[]) : void {
+    private topoSortDFS(node : string, visited : boolean[], tempStack : string[], recStack : string[]) : void {
         visited[node] = true;
-        const letter = this.alphabetTable[node];
-        let neighbors = this.adjList[letter];
+        let neighbors = this.adjList[node];
 
-        if (!neighbors) return;
+        recStack[node] = true;
 
-        for (let i=0; i < neighbors.length; i++) {
-            const node = neighbors[i];
-            this.topoSortDFS(this.alphabetTable[node], visited, topoSorted);
+        for (let i=0; neighbors && i < neighbors.length; i++) {
+            const neighbor = neighbors[i];
+            if (recStack[neighbor]) {
+                this.isCyclic = true;
+                return;
+            }
+            if (visited[neighbor] === false) {
+                this.topoSortDFS(neighbor, visited, tempStack, recStack);
+            }
         }
 
-        topoSorted.push(letter);
+        recStack[node] = false;
+        tempStack.push(node);
     }
 
     public topoSort() : string {
         let visited = [];
-        let topoSorted = [];
+        let tempStack = [];
+        let vertexList = Object.keys(this.vertexList);
+        let recStack = [];
 
-        for (let i=0; i < this.totalVerticies; i++) {
-            visited[i] = false;
-        }
+        vertexList.forEach(letter => {
+            visited[letter] = false;
+        })
 
-        for (let i=0; i < this.totalVerticies; i++) {
-            if (visited[i] === false) {
-                this.topoSortDFS(i, visited, topoSorted);
+        for (let i=0; i < vertexList.length; i++) {
+            const letter = vertexList[i];
+            if (visited[letter] === false) {
+                this.topoSortDFS(letter, visited, tempStack, recStack);
             }
         }
 
+        if (this.isCyclic) {
+            return '';
+        }
+
+        let topoSorted = [];
+        while (tempStack.length > 0) {
+            topoSorted.push(tempStack.pop());
+        }
         return topoSorted.join('');
     }
 }

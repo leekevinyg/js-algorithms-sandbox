@@ -85,7 +85,7 @@ Example:
 
 In the first column we can derive the edge ```[a, c]```, representing the fact that a comes before c lexographically
 in this alient alphabet.
-For the second column we are unable to derive relationship, unless everything before the letters we want to compare is
+For the second column we are unable to derive a relationship unless everything before the letters we want to compare is
 the same. To compare letters above the first position in each row, we must check that everything preceding the letters
 we want to compare is the same:
 
