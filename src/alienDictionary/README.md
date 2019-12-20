@@ -121,14 +121,12 @@ detect if there is a cycle in our DAG represented by our edges.
 
 3) Topologically sort the graph (return [] if a cycle is found).
 
-We will need:
-
-1) A double for loop 
-2) A graph class, with an ability to add edges, as well as topological sort them.
-
 To topologically sort, we will use recursive DFS, and keep track of a stack (outside of the call stack),
 that records the nodes where all their children have already been explored. We simply reverse this list to get
 the topological ordering.
+
+**Time Complexity**
+O(V+E)
 
 
 
