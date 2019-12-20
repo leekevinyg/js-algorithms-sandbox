@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { generateEdges, alienOrder } from '../../src/alienDictionary/alien-dictionary';
 import Graph from '../../src/alienDictionary/graph';
 
-xdescribe('Alien Dictionary - generate edges', () => {
+xdescribe('[OLD] Alien Dictionary - generate edges', () => {
     it('properly creates the edges given an array of words of length 1', () => {
         const words = [
             "a",
