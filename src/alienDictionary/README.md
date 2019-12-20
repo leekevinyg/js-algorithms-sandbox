@@ -70,8 +70,8 @@ In this word list:
 ```[a, b]``` and ```[b, c]``` can be thought of as directed edges where ```a``` alphabetically precedes ```b``` and 
 ```b``` alphabetically preceds ```c```.
 
-Then, this problem becomes running a topological sort on the list of alphabetically precedent edges generated 
-from the words array.
+Once we make sure that every letter encountered is added as a vertex in our graph representation, this problem becomes
+a problem of running a topological sort on the list of alphabetically precedent edges generated from the words array.
 
 To generate the edges, we simply continue to compare letters among the words to establish precedent relationships.
 

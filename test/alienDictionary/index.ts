@@ -2,14 +2,15 @@ import { expect } from 'chai';
 import { generateEdges, alienOrder } from '../../src/alienDictionary/alien-dictionary';
 import Graph from '../../src/alienDictionary/graph';
 
-xdescribe('[OLD] Alien Dictionary - generate edges', () => {
+describe('Alien Dictionary - generate edges', () => {
     it('properly creates the edges given an array of words of length 1', () => {
         const words = [
             "a",
             "b",
             "c",
         ];
-        expect(generateEdges(words).toString()).to.equal([["a", "b"], ["b", "c"]].toString());
+        const precedentEdges = generateEdges(words).filter(edge => edge.length > 1);
+        expect(precedentEdges.toString()).to.equal([["a", "b"], ["b", "c"]].toString());
     });
 
     it('properly creates the edges given an English alphabet', () => {
@@ -21,7 +22,8 @@ xdescribe('[OLD] Alien Dictionary - generate edges', () => {
             "sheep",
             "shit",
         ];
-        expect(generateEdges(words).toString()).to.equal([["p", "w"], ["c", "g"], ["a", "o"], ["g", "s"], ["e", "i"]].toString());
+        const precedentEdges = generateEdges(words).filter(edge => edge.length > 1);
+        expect(precedentEdges.toString()).to.equal([["p", "w"], ["c", "g"], ["a", "o"], ["g", "s"], ["e", "i"]].toString());
     });
 
     it('properly creates the edges given an alien alphabet', () => {
@@ -32,7 +34,8 @@ xdescribe('[OLD] Alien Dictionary - generate edges', () => {
             "ett",
             "rftt"
         ];
-        expect(generateEdges(words).toString()).to.equal([["t", "f"], ["w", "e"], ["r", "t"], ["e", "r"]].toString());
+        const precedentEdges = generateEdges(words).filter(edge => edge.length > 1);
+        expect(precedentEdges.toString()).to.equal([["t", "f"], ["w", "e"], ["r", "t"], ["e", "r"]].toString());
     });
 });
 
