@@ -17,6 +17,15 @@ class Graph implements IGraph {
     }
 
     public addEdge(edge : string[]) : void {
+        if (edge.length === 1) {
+            // add a vertex
+            const letter = edge[0];
+            if (this.vertexList[letter]) {
+                return;
+            }
+            this.vertexList[letter] = true;
+            return;
+        }
         const head = edge[0];
         const tail = edge[1];
 

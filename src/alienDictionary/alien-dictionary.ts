@@ -32,6 +32,11 @@ export const generateEdges = (words : string[]) : string[][] => {
         let currentWord = words[row];
         let nextWord = row + 1 < maxRows ? words[row + 1] : null;
 
+        for (let i=0; i<currentWord.length; i++) {
+            // add vertex into graph
+            edges.push([currentWord[i]]);
+        }
+
         if (!nextWord) continue; // nothing to compare
 
         // establish precendence relationship between letters only if preceding letters have been the same 
