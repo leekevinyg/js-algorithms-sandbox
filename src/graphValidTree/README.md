@@ -26,7 +26,13 @@ A tree has:
 3) is acyclic
 
 Note detecting a cycle in an undirected graph is different than detecting a cycle in a directed graph.
-
-For a directed graph
+For an undirected graph a cycle means if a node is present in the recursion stack AND NOT the parent.
 
 We simply check that all 3 of these cases hold and return true if they do, otherwise it's not a valid tree.
+
+**Time Complexity**
+
+O(V+E)
+
+**Resources**
+[Detecting a cycle in an undirected graph](https://www.geeksforgeeks.org/detect-cycle-undirected-graph/)
