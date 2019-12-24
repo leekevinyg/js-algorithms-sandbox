@@ -16,7 +16,8 @@ Given a reference of a node in a connected undirected graph, return a deep copy 
 
 **Solution**
 
-Traverse the graph with DFS and copy.
+We will need to traverse the graph to clone it. But for this problem, we also need to think about how we want to represent relationships
+between the nodes that we are exploring.
 
 **Time Complexity**
 
