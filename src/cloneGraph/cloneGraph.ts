@@ -1,51 +1,43 @@
 interface Node {
-    $ref?: string,
-    $id?: string,
-    val? : string,
-    neighbors? : Node[],
+    val : string,
+    neighbors : Node[],
 }
 
 export const cloneGraph = (node) : Node => {
-    const cloneMap = {};
-    const searchStack = [node];
+    /* 1. Store cloned nodes in a HashMap
+    */
+    const map = {};
 
-    while (searchStack.length > 0) {
+    /* 2. Traverse original graph
+          - If node is not cloned, clone it and add it to the map
+            with initial neighbors list empty
+    */
+    let searchStack = [node];
+    while(searchStack.length > 0) {
         const currNode = searchStack.pop();
-        const nodeId = currNode.$id || currNode.$ref;
-        let nodeCopy = cloneMap[nodeId];
-
-        if (!nodeCopy) {
-            // if we haven't seen this node yet, create it's clone and add it to our map
-            nodeCopy = <Node> {
-                $id: nodeId,
-                val: currNode.val,
+        if (!map[currNode.val]) {
+            map[currNode.val] = {
                 neighbors: [],
             }
-            cloneMap[nodeId] = nodeCopy;
         }
-
-        // add the cloned nodes edge relationships
-        const neighbors = currNode.neighbors;
-        neighbors.forEach(neighbor => {
-            const neighborId = neighbor.$ref || neighbor.$id;
-            // have we created a clone for this neighbor already?
-            if (cloneMap[neighborId]) {
-                // add the clone to our list of neighbors
-                nodeCopy.neighbors.push(cloneMap[neighborId]);
-            } else {
-                // create a new node for this neighbor and add the neighbor clone to list of neighbors
-                const clonedNeighbor = <Node> {
-                    $id: neighborId,
-                    val: neighbor.val, // TODO handle ref
+         /* 3. Examine neighbors of node
+          - If neighbors are not cloned, clone it and add it to the map
+          - Add cloned neighbors to our cloned node from step 2
+         */
+        for (let i=0; i<currNode.neighbors.length; i++) {
+            const neighborNode = currNode.neighbors[i];
+            if (!map[neighborNode.val]) {
+                map[neighborNode.val] = {
                     neighbors: [],
                 }
-                cloneMap[neighborId] = clonedNeighbor;
-                nodeCopy.neighbors.push(clonedNeighbor);
+                searchStack.push(neighborNode);
             }
-            searchStack.push(neighbor);
-        })
+            map[currNode.val].neighbors.push(map[neighborNode.val]);
+        }
+        map[currNode.val].val = currNode.val;
     }
 
-    return cloneMap[node.$id];
+    // Return graph rooted at start node.
+    return map[node.val];
 }
 
