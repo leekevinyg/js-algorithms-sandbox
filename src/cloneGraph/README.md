@@ -17,9 +17,9 @@ Given a reference of a node in a connected undirected graph, return a deep copy 
 **Solution**
 
 1. Store cloned nodes in a hashmap
-2. Traverse the graph
+2. Traverse the original graph
     - If a node has not been cloned, clone it with an initial empty neighbors list
-3. Examine the neighbors of the node from the step above. 
+3. Examine the neighbors of the node from the step above to estalibsh cloned neighbor relationships.
     - If the neighbors have not been cloned, clone them with an initial empty neighbors list and add them to the searchStack.
     - Add the cloned neighbors to the node created in step 2.
 4. Return the cloned graph rooted at the start node.
