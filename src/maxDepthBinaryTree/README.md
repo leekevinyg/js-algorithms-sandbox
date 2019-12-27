@@ -20,8 +20,8 @@ interface TreeNode {
 
 **Solution**
 
-1) Keep track of the depth of the DFS traversal by recursively calling DFS with ```currentDepth + 1```.
-2) At each iteration, if the passed in currentDepth exceeds the maxDepth encountered so far, increment maxDepth.
+1) Initialize ```maxDepth``` encountered so far to ```0```. Traverse the tree and keep track of the depth of the DFS traversal by recursively calling DFS with the parameter```currentDepth + 1```.
+2) At each iteration, if the passed in ```currentDepth``` exceeds the ```maxDepth``` encountered so far, update ```maxDepth```.
 3) At the end, just return maxDepth.
 
 This solution is O(n) time, as each node is only hit once, and O(n) space (example: worst case all nodes are on left side of the tree).
