@@ -5,8 +5,8 @@ interface TreeNode {
 }
 
 const maxDepth = function(root : TreeNode) : number {
-    let initialDepth = 0;
-    let maxDepthSoFar = 0;
+    let initialDepth : number = 0;
+    let maxDepthSoFar : number = 0;
 
     const maxDepthHelper = function(node : TreeNode, level : number) {
         if (level > maxDepthSoFar) {
