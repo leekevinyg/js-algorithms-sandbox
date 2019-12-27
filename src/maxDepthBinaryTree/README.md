@@ -8,7 +8,7 @@ The maximum depth is the number of nodes along the longest path from the root no
 
 Notes:
 - A leaf is a node with no children.
-- a node interface:
+- A node interface definition:
 
 ```
 interface TreeNode {
