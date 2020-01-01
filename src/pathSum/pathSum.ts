@@ -4,7 +4,7 @@ interface TreeNode {
     right?: TreeNode,
 }
 
-const hasPathSum = (root : TreeNode, sum : number) : boolean {
+const hasPathSum = (root : TreeNode, sum : number) : boolean => {
     // Recursively explore graph
     // As we explore the graph keep subtracting a node.val from the sum
     // Once we reach the goal node (leaf), we check if our sum is at 0.
