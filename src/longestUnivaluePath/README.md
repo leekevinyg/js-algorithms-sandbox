@@ -34,12 +34,19 @@ Output: 2
 </pre>
 
 **Solution**
+The longest path so far either:
 
-A streak is alive and can be incremented if a node's neighbors contain the same value as the node.
-Store a hashmap of a node's streak and return the max value found.
+        1) Includes the root (left and right nodes are equal to root)
+        2) Is in the left tree
+        3) Is in the right tree
+
+        As we traverse the tree, we can increment a univalue path if either:
+
+        1) node.val === node.left
+        2) node.val === node.right
+
+        We will keep a global of the longest path so far.
+
 
 Time complexity: O(n)
 Space comlexity: O(n)
-
-Problem: There can be 2 distinct uni value paths of the same value.
-

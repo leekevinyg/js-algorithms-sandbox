@@ -2,11 +2,28 @@ import longestUnivaluePath from '../../src/longestUnivaluePath/longestUnivaluePa
 import { expect } from 'chai';
 
 describe('longestUnivaluePath', () => {
-    xit('returns 0 when passed an empty tree', () => {
+    it('returns 0 when passed an empty tree', () => {
         expect(longestUnivaluePath(null)).to.equal(0);
     });
 
-    xit('returns the longest univalue path', () => {
+    it('returns longest path for a simple tree', () => {
+        const root = {
+            val: 1,
+            left: {
+                val: 1,
+                left: null,
+                right: null,
+            },
+            right: {
+                val: 1,
+                left: null,
+                right: null,
+            }
+        };
+        expect(longestUnivaluePath(root)).to.equal(2);
+    });
+
+    it('returns the longest univalue path', () => {
         const root = {
             val: 5,
             left: {
