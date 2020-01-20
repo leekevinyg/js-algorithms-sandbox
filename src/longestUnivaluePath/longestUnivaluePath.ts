@@ -1,37 +1,25 @@
 interface TreeNode {
     val?: number,
-    left?: TreeNode,
-    right?: TreeNode
-};
-
-let longestPathSoFar = 0;
-const longestUnivaluePath = (root : TreeNode) : number => {
-    maxUnivalueLength(root);
-    return longestPathSoFar;
+    left: TreeNode,
+    right: TreeNode, 
 }
 
-const maxUnivalueLength = (node : TreeNode) : number => {
-    if (node === null) {
+export const longestUnivaluePath = (node : TreeNode) : number => {
+    if (node === null || node.left === null && node.right === null) {
         return 0;
-    };
-
-    let maxLeft = 0;
-    let maxRight = 0;
-
-    maxLeft = maxUnivalueLength(node.left);
-    maxRight = maxUnivalueLength(node.right);
-
-    if (node.left && node.left.val === node.val) {
-        maxLeft = maxLeft + 1;
     }
-    if (node.right && node.right.val === node.val) {
-        maxRight = maxRight + 1;
-    }
-    longestPathSoFar = Math.max(longestPathSoFar, maxLeft + maxRight);
-    return Math.max(maxLeft, maxRight);
+
+    return Math.max(
+        longestUnivaluePath(node.left),
+        longestUnivaluePath(node.right),
+        straightUnivaluePath(node.left, node.val) + straightUnivaluePath(node.right, node.val)
+    );
 }
 
-export default longestUnivaluePath;
-
-
-
+const straightUnivaluePath = (node : TreeNode, value : number) : number => {
+    if (!node || node.val !== value) return 0;
+    return Math.max(
+        straightUnivaluePath(node.left, value), 
+        straightUnivaluePath(node.right, value)
+    ) + 1;
+}

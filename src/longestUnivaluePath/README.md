@@ -34,19 +34,13 @@ Output: 2
 </pre>
 
 **Solution**
-The longest path so far either:
 
-        1) Includes the root (left and right nodes are equal to root)
-        2) Is in the left tree
-        3) Is in the right tree
+The longest path is either in the:
 
-        As we traverse the tree, we can increment a univalue path if either:
-
-        1) node.val === node.left
-        2) node.val === node.right
-
-        We will keep a global of the longest path so far.
-
+1) Left Tree
+2) Right Tree
+3) Goes through the root
 
 Time complexity: O(n)
-Space comlexity: O(n)
+Space complexity: O(n) if unbalanced, O(lg n) if balanced.
+
