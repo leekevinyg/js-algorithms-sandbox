@@ -1,19 +1,19 @@
 export const twoSum = (nums : number[], target : number) => {
-    let hashTable = {}; // map number value to it's index
-    // go through the nums list
-    // if the number is not seen, add it to the hashTable and record it's index
-    // check if the complement has been seen before if it has, return the current index and 
+    // Store hashtable of numbers we have seen already and their indices
+    let hashTable = {}; 
+    /*
+    For each number, calculate its complement
+    If we have seen the complement already, then return the current index i, and the complement index stored in the hashtable
+    Else, add the number and it’s index into the hashtable
+    Beware:
+    The index of a number may be 0 which is falsy, but we need to return true for it.
+    */
+ 
     for (let i=0; i < nums.length; i++) {
-        let number = nums[i];
-        if (!hashTable[number]) {
-            hashTable[number] = i;
+        let complement = target - nums[i];
+        if (Number.isInteger(hashTable[complement])) {
+            return [i, hashTable[complement]];
         }
-        let complement = target - number;
-        let indexOfComplement = hashTable[complement]
-        if (Number.isInteger(indexOfComplement)) {
-            if (i !== indexOfComplement) {
-                return [i, indexOfComplement];
-            }
-        }
+        hashTable[nums[i]] = i;
     }
 }
