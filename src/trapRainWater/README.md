@@ -8,14 +8,16 @@ Given n non-negative integers representing an elevation map where the width of e
 
 **Solution**
 
-- Initialize an array to keep track of the volume of our buckets of water
-- Loop through the array
-- We can start a bucket when we reach our first number
-- We do not end the bucket until we reach another number that is > 0. This is our second number.
-- To calculate the max trappable water, we multiply the minimum of the first or second number with the number
-  steps it took to get to the second number
-- TODO: The actual trappable water is going to be less than this as we can have rocks that take up space.
-- Finally, sum the total volume of water we can trap with our buckets
+Each index has a certain amount of water that it can "store" above it.
+
+We can calculate this number by:
+1) Finding the highest bucket edge to the left
+2) Finding the highest bucket edge to the right
+3) Taking the minimum of these two numbers and subtracting the value of the current index.
+
+To get the total amount of water captured we just keep adding the number derived from step 3
+to a value initialized at the beginning of the solution.
+
 
 
 

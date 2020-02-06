@@ -1,35 +1,25 @@
 export const trap = (heights : number[]) : number => {
-    if (!heights || heights.length === 0) {
-        return 0;
-    }
-
-    let buckets = [];
-    let bucketLeftEdge = null;
-    let bucketRightEdge = null;
-    let stepsToRightEdge = 0;
+    let ans = 0;
+    let maxLeft = 0;
+    let maxRight = 0;
     for (let i=0; i<heights.length; i++) {
-        // initialize bucketLeftEdge if it doesn't exist
-        if (bucketLeftEdge === null && heights[i] > bucketLeftEdge) {
-            bucketLeftEdge = heights[i];
-            continue;
+        // find max left of i
+        for (let j=i-1; j>=0; j--) {
+            if (heights[j] > maxLeft) {
+                maxLeft = heights[j];
+            }
         }
-        // test if we have reached the bucketRightEdge
-        if (bucketRightEdge === null && heights[i] > 0) {
-            bucketRightEdge = heights[i];
-            const trappableWater = Math.min(bucketLeftEdge, bucketRightEdge) * stepsToRightEdge;
-            buckets.push(trappableWater);
-            // reset parameters
-            bucketLeftEdge = bucketRightEdge;
-            bucketRightEdge = null;
-            stepsToRightEdge = 0;
-        } else if (bucketLeftEdge) {
-            stepsToRightEdge++;
+        // find max right of i
+        for (let k=i+1; k<heights.length; k++) {
+            if (heights[k] > maxRight) {
+                maxRight = heights[k];
+            }
         }
+        if (Math.min(maxLeft, maxRight) - heights[i] > 0) {
+            ans+= Math.min(maxLeft, maxRight) - heights[i];
+        }
+        maxLeft = 0;
+        maxRight = 0;
     }
-
-    let totalTrappedWater = 0;
-    for (let i=0; i<buckets.length; i++) {
-        totalTrappedWater+=buckets[i];
-    }
-    return totalTrappedWater;
+    return ans;
 }
