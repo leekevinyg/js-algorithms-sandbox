@@ -25,7 +25,7 @@ describe('trapping rain water', () => {
     });
 
     it('returns trappable area for simple cases when there is a bar in the middle of the bucket', () => {
-        expect(trap([2, 1, 2])).to.equal(1);
+        expect(trap([3, 1, 0, 4])).to.equal(5);
     })
 
     xit('returns trappable area', () => {
