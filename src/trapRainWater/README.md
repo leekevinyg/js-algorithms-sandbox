@@ -23,9 +23,13 @@ Space Complexity: O(1)
 
 **Solution 2**
 
-- Use the same technique as product of array except self to track maxLeft and maxRight
-- Should reduce down to O(n)
-
+- Construct a maxLeftArray containing the max left value from each index i in the input array
+- Construct a maxRightArray containing the max right value fmor each index i in the input array
+- The amount of water from each index continues to be:
+  ```Math.max(maxLeftArray[i], maxRightArray[i]) - height[i]```
+  but, since we are computing the values in one pass before hand, the time complexity reduces
+  down to O(n) time and space.
+  
 
 
 
