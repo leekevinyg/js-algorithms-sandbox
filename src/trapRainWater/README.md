@@ -23,7 +23,8 @@ Space Complexity: O(1)
 
 **Solution 2**
 
-- Perhaps we can memoize some calculations.
+- Use the same technique as product of array except self to track maxLeft and maxRight
+- Should reduce down to O(n)
 
 
 
