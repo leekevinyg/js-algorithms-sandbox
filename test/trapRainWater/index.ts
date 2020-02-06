@@ -28,7 +28,7 @@ describe('trapping rain water', () => {
         expect(trap([3, 1, 0, 4])).to.equal(5);
     })
 
-    xit('returns trappable area', () => {
+    it('returns trappable area', () => {
         expect(trap([0,1,0,2,1,0,1,3,2,1,2,1])).to.equal(6);
     });
 });
