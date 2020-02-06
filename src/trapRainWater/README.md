@@ -18,6 +18,12 @@ We can calculate this number by:
 To get the total amount of water captured we just keep adding the number derived from step 3
 to a value initialized at the beginning of the solution.
 
+Time Complexity: O(n^2)
+Space Complexity: O(1)
+
+**Solution 2**
+
+- Perhaps we can memoize some calculations.
 
 
 
