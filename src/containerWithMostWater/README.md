@@ -7,17 +7,19 @@ Given n non-negative integers a1, a2, ..., an , where each represents a point at
 Note: You may not slant the container and n is at least 2.
 
 **Solution 1**
+
 Brute Force:
 
-Iterate to each bar, look at the max area formed with bars to
+Iterate to the index representing each bar and look at the max area formed with bars to
 the left of it and bars to the right of it.
 
 Time complexity: O(n^2)
 Space complexity: O(n)
 
-**Solutions 2**
+**Solution 2**
+
 1) Initialize ```maxArea``` to 0
-2) Store 2 pointers, one at the beginning of the array, one at the end. This is our max possible width
+2) Store 2 pointers, one at the beginning of the array, one at the end - this is our max possible width
 3) We iterate through the array once
     - At each step, we calculate the current max area by multiplying the max area obtained
       with edges represented by our pointers in step 2.
