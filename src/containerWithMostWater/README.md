@@ -16,9 +16,16 @@ Time complexity: O(n^2)
 Space complexity: O(n)
 
 **Solutions 2**
+1) Initialize ```maxArea``` to 0
+2) Store 2 pointers, one at the beginning of the array, one at the end. This is our max possible width
+3) We iterate through the array once
+    - At each step, we calculate the current max area by multiplying the max area obtained
+      with edges represented by our pointers in step 2.
+    - If this max area exceeds the previous max area, update it.
+    - We take the minimum height from the bars represented by the 2 pointers and move them
+      forward one step (looking for potentially a bar that is higher)
+    - We break the loop if ```startIndex``` ever equals ```endIndex```
 
-Construct the max achievable area from each the left
-Construct the max achievable area from each index to the right
-
-
+Time complexity: O(n)
+Space complexity: O(1)
 
