@@ -30,9 +30,9 @@ Space Complexity: O(1)
 
 **Solution 2**
 
-1) Construct an array of maxToRight of each index i from back to front
+1) Construct an array containing the maximum value to the right of each index i
 2) Initialize a maxProfit variable to 0
-3) Iterate through the array and calculate profits at each index by using
+3) Iterate through the actual input array and calculate profits at each index by using
    the array constructed in step 1. Update maxProfit when we exceed it.
 4) Return maxProfit
 
