@@ -13,16 +13,17 @@ Example 1:
 <pre>
 Input: [7,1,5,3,6,4]
 Output: 5
-Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
-             Not 7-1 = 6, as selling price needs to be larger than buying price.
+Explanation: 
+Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+Not 7-1 = 6, as selling price needs to be larger than buying price.
 </pre>
 
 **Solution**
 
 Brute force:
-1) Initialize maxProfit variable to 0
+1) Initialize ```maxProfit``` variable to ```0```
 2) For each item in the array, compare it with each item to the right of it. If the
-   profit > maxProfit, update it
+   calculated ```profit > maxProfit```, update ```maxProfit```
 3) Return the max profit
 
 Time Complexity: ```O(n^2)```
