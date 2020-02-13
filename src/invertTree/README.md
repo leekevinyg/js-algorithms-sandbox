@@ -26,8 +26,8 @@ Output:
 
 **Solution**
 
-Recursively invert the tree using DFS. O(n) time since every node is touched once. 
+Recursively invert the tree using DFS. ```O(n)``` time since every node is touched once. 
 
-For space, if tree is unbalanced (one straight line), then the space complexity is O(n).
+For space, if tree is unbalanced (one straight line), then the space complexity is ```O(n)```.
 
-If the tree is balanced, the max height (and thus max recursion stack) will be O(lg N).
+If the tree is balanced, the max height (and thus max recursion stack) will be ```O(lg N)```.
