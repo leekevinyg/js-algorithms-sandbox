@@ -115,7 +115,7 @@ detect if there is a cycle in our DAG represented by our edges.
 
 **Plan**
 
-1) Parse the words array into prerequisite edges representing 
+1) Parse the words array into prerequisite edges.
 
 2) Construct a graph from the prerequisite edges.
 
