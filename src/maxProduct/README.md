@@ -33,3 +33,43 @@ Brute Force:
 Time Complexity: ```O(n^2)```
 
 Space complexity: ```O(1)```
+
+**Solution 2**
+
+We iterate through the array once, and consider 3 separate cases:
+
+1) Next number is a positive integer when ```i=2```:
+
+   <pre>
+           ↓
+   [-1, 6, 2, 3]
+   </pre>
+
+   At ```i=2```, the ```prevMax=12```, the new currMax is simply:
+   ```currMax=prevMax*nums[i]```
+
+1) Next number is a negative integer when ```i=2```:
+
+   <pre>
+           ↓
+   [-1, 6, 2, -3]
+   </pre>
+
+   At ```i=2```, the ```prevMax=12```, but to get the actual max of the
+   subarray in this case we also need to store a ```prevMin``` variable
+   which at this point would be ```-12```. Then, ```currMax=prevMin*nums[i]```.
+
+3) Next number is the beginning of the max subarray
+   <pre>
+              ↓
+   [3, -1, 0, 7, 9]
+   </pre>
+   At this point both the previous max and min are 0. We need to start a new
+   subarray product accumulator at nums[i].
+
+We store a runnin accumulator of the max of any of these 3 cases and return
+it at the end.
+
+Time Complexity: ```O(n)```
+
+Space Complexity: ```O(1)```
