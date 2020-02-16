@@ -64,8 +64,8 @@ We iterate through the array once, and consider 3 separate cases:
               ↓
    [3, -1, 0, 7, 9]
    </pre>
-   At this point both the previous max and min are 0. We need to start a new
-   subarray product accumulator at nums[i].
+   We need to consider each element ```nums[i]``` as the starting position
+   of a maximum product subarray.
 
 We store a runnin accumulator of the max of any of these 3 cases and return
 it at the end.
