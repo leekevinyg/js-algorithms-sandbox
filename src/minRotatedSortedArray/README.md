@@ -87,6 +87,7 @@ the point where the sorted array is rotated.
       inflection  
     </pre>
 
-  
+Time Complexity: ```O(lg n)```
+Space Complexity: ```O(lg n)``` on the call stack for a recursive implementation
    
 
