@@ -15,7 +15,7 @@ Input: numbers = [2,7,11,15], target = 9
 Output: [1,2]
 Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.
 
-**Solution**
+**Solution 1**
 1) store 2 pointers
     - one at the beginning
     - one at the end
@@ -31,3 +31,12 @@ Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.
 Time Complexity: O(n)
 
 Space Complexity: O(1)
+
+**Solution 2**
+
+1) For each number, binary search for it's complement
+
+Time Complexity: O(nlgn)
+
+Space Complexity: O(lgn) if recursive implementation of binary search.
+
