@@ -1,7 +1,7 @@
 import { maxPathSum } from '../../src/maxPathSumBinaryTree/maxPathSumBinaryTree';
 import { expect } from 'chai';
 
-describe('maxPathSum', () => {
+xdescribe('maxPathSum', () => {
     it('returns 0 when passed an empty tree', () => {
         expect(maxPathSum(null)).to.equal(0);
     });

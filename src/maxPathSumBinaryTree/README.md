@@ -32,8 +32,47 @@ Output: 42
 
 **Solution**
 
-Return the maximum path sum either:
+There are 4 scenerios we will need to consider:
 
-1) Is in the left subtree
-2) Is in the right subtree
-3) Goes through the root
+1) Entire Tree
+
+<pre>
+
+       1
+      / \
+     2   3
+
+</pre>
+
+2) Right subtree
+
+<pre>
+
+   -10
+   / \
+  9  20
+    /  \
+   15   7
+
+</pre>
+
+3) Left subtree
+
+<pre>
+   -10
+   / \
+  20  9
+ /  \
+15   7
+</pre>
+
+4) Straight line path
+
+<pre>
+    15
+   / \
+  20  9
+ /  \
+15   7
+
+</pre>

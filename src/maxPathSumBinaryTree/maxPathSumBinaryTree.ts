@@ -4,13 +4,27 @@ interface TreeNode {
     left?: TreeNode,
 }
 
-export const maxPathSum = (root : TreeNode) : number => {
-    if (!root) return 0;
-    return Math.max(
-        root.val,
-        root.val + maxPathSum(root.left) + maxPathSum(root.right),
-        root.val + Math.max(maxPathSum(root.left), maxPathSum(root.right)),
-        Math.max(maxPathSum(root.left), 0),
-        Math.max(maxPathSum(root.right), 0),
-    );
+let maxSum = Number.NEGATIVE_INFINITY;
+const maxGain = (node : TreeNode) : number => {
+    if (!node) {
+        return 0;
+    }
+
+    if (node.val > maxSum) {
+        maxSum = node.val;
+    }
+
+    let leftGain = maxGain(node.left);
+    let rightGain = maxGain(node.right);
+
+    let newPath = node.val + leftGain + rightGain;
+    maxSum = Math.max(maxSum, newPath);
+    return node.val + Math.max(leftGain, rightGain);
 }
+
+export const maxPathSum = (root : TreeNode) : number => {
+    maxGain(root);
+    return maxSum;
+}
+
+
