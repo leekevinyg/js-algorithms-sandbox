@@ -50,12 +50,14 @@ of the same solution set item would work but would be very slow.
 **Alternative Solution**
 
 1) Sort the array - O(lg n)
-2) Iterate through the array
-    - For each number, find it's complement that would result in a sum of 0.
-3) Look in the rest of the array for the complement calculated in step 2.
-    - Because the array is sorted, we can use the ```O(n)``` 2 pointers solution here.
-4) To handle permutations:
-    - Sort each solution and check it against a hashmap to see if we have seen it before
+2) Iterate through the array, maintaining 3 pointers.
+   - One at the beginning of the ray representing the first number in a possible 3 sum,
+     i.e., ```nums[i]```
+   - Two pointers denoting the start/end of the rest of the array that we will use to do
+     an ```O(n)``` search for the the 2 sum complement of ```nums[i]```
+3) Because the array is sorted, permutations can be handled by skipping any pointer 
+   element where the pointer is pointing to a number we have previously seen before
+   at that pointer position.
 
-Time Complexity: ```O(n^2 lg n)```
+Time Complexity: ```O(n^2)```
 Space Complexity: ```O(1)```

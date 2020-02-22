@@ -6,11 +6,16 @@ describe('Three Sum', () => {
         expect(threeSum([]).toString()).to.equal([].toString());
         expect(threeSum([1, 2]).toString()).to.equal([].toString());
     });
-    it('should handle permutations properly', () => {
+    it.only('should handle permutations properly', () => {
         expect(threeSum([0, 0, 0]).toString()).to.equal([[0, 0, 0]].toString());
         expect(threeSum([-1, 0, 1, 2, -1, -4]).toString()).to.equal([
-            [-1, -1, 2],
-            [-1, 0, 1]
+            [-1,-1,2],
+            [-1,0,1],
           ].toString());
+        expect(threeSum([3,0,-2,-1,1,2]).toString()).to.equal([
+            [-2,-1,3],
+            [-2,0,2],
+            [-1,0,1]
+        ].toString());
     });
 })

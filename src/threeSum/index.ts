@@ -1,48 +1,43 @@
 export const threeSum = (nums : number[]) : number[][] => {
     let solutionSet = [];
-    let solutionHashMap = {};
     if (!nums || nums.length < 3) {
         return solutionSet;
     }
     // sort the array
-    const sortedNums = nums.sort();
+    const sortedNums = nums.sort((a, b) => a - b);
 
     // Iterate through the array
-    for (let i=0; i<nums.length; i++) {
-        let twoSumComplement = 0 - nums[i];
-        let twoSumIndicies = twoSum(sortedNums, twoSumComplement);
-        if (twoSumIndicies.length === 0) {
+    for (let i=0; i<=sortedNums.length - 3; i++) {
+        let twoSumComplement = 0 - sortedNums[i];
+        if (i > 0 && sortedNums[i] === sortedNums[i-1]) {
             continue;
         }
-        // this check ensures no repeated usage of the SAME number
-        if (twoSumIndicies[0] !== i && twoSumIndicies[1] !== i) {
-            let solution = [nums[i], nums[twoSumIndicies[0]], nums[twoSumIndicies[1]]];
-            let key = solution.sort().toString();
-            if (!solutionHashMap[key]) {
-                solutionSet.push(solution);
-                solutionHashMap[key] = true;
-            }            
+        let left = i + 1;
+        let right = sortedNums.length - 1;
+        while (left < right) {
+            let currentSum = sortedNums[left] + sortedNums[right];
+            if (currentSum === twoSumComplement) {
+                solutionSet.push([sortedNums[i], sortedNums[left], sortedNums[right]]);
+                let currentRight = right;
+                let currentLeft = left;
+                while (sortedNums[right] === sortedNums[currentRight] && left < right) {
+                    right--;
+                }
+                 while (sortedNums[left] === sortedNums[currentLeft] && left < right) {
+                    left++;
+                }
+            } else if (currentSum > twoSumComplement) {
+                let currentRight = right;
+                while (sortedNums[right] === sortedNums[currentRight] && left < right) {
+                    right--;
+                }
+            } else if (currentSum < twoSumComplement) {
+                let currentLeft = left;
+                while (sortedNums[left] === sortedNums[currentLeft] && left < right) {
+                    left++;
+                }
+            }
         }
     }
     return solutionSet;
-}
-
-// handles the 2 sum problem given a SORTED array of nums
-const twoSum = (nums : number[], target : number) : number[] => {
-    let left = 0;
-    let right = nums.length - 1;
-
-    while (right > left) {
-        let currentSum = nums[left] + nums[right];
-        if (currentSum > target) {
-            // we want a smaller sum, decrease right pointer by 1
-            right--;
-        } else if (currentSum < target) {
-            left++;
-        } else {
-            return [left, right];
-        }
-    }
-
-    return [];
 }
