@@ -41,7 +41,7 @@ export const searchRotatedArray = (nums, target) => {
         return pivot;
     } else if (nums[pivot] < target) {
         // target is the the array to the left of mid
-        return binarySearch(nums.splice(0, pivot - 1), target);
+        return binarySearch(nums.splice(0, pivot), target);
     } else if (nums[pivot] > target) {
         // target is in the array to the right of mid
         return binarySearch(nums.splice(pivot + 1, nums.length), target);

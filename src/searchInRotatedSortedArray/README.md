@@ -31,7 +31,7 @@ Simple ```O(n)``` solution:
 
 ```O(lg n) solution```:
 
-1) Find the index of the min number in the array
-2) Using min number, decide 
-3) Do a binary search for the target.
+1) Find the index of the min number in the array.
+2) Using min number, decide which array contains the target.
+3) Do a binary search for the target in the chosen array in step 1.
 
