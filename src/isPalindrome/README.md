@@ -18,7 +18,9 @@ Output: false
 
 **Possible Questions**
 
-Is an odd length string like "ababa" considered a palindrome?
+- Is an odd length string like "ababa" considered a palindrome?
+- Is an empty string considered a palindrome?
+- Can we ignore punctuation?
 
 **Solution**
 
