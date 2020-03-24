@@ -28,27 +28,21 @@ Note that the answer must be a substring, "pwke" is a subsequence and not a subs
 **Possible Questions**
 
 - Is a capitalized character considered the same or different character?
+- Is an empty string a charactar?
 
-**Brute Force**
+**Solution**
 
-1) Write a function to calculate the longest possible streak from the 
-   start of the string without repeating charaters. 
-       - Utilize a hashmap to store characters seen so far
-       - Iterate through the string
-       - The streak can be incremented as long as we haven't seen the 
-         current character at index ```i``` as tracked in the hashmap.
+This is a classic sliding window problem.
 
-2) Initialise a variable representing the ```maxStreak = 0```
+1) Initialize 2 pointers (i, j) to 0
+2) Pointer j starts traversing the length of the string
+3) As we traverse, we keep track of the count of characters that we have encountered
+4) If a duplicate is detected, we move Pointer i right (and update the seen character map), until no duplicates are detected
+5) Keep track of our character count streak (largest window) as we Traverse until j hits the end of the string
+6) Return the largest window detected
 
-3) Iterate through the string, and calculate the longest possible streak
-   from ```i``` to the length of the input string. If this streak exceeds
-   ```maxStreak```, update it.
+Time Complexity: O(n^2)
 
-4) Return ```maxStreak```
-
-Time Complexity: O(n!)
-
-Space Complexity: O(n) to store the seen hashmap in the function written in 
-step 1 above.
+Space Complexity: O(n)
 
 

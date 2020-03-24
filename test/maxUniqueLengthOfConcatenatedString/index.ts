@@ -6,7 +6,7 @@ describe('max unique length of concatenated string', () => {
         let sltn = new Solution();
         expect(sltn.maxLength([])).to.equal(0);
     });
-    it.only('returns the max unique length of subsequence in middle of array', () => {
+    it('returns the max unique length of subsequence in middle of array', () => {
         let sltn = new Solution();
         expect(sltn.maxLength(['un', 'iq', 'ue'])).to.equal(4);
         expect(sltn.maxLength(["s","sa","m","e","mu","ei"])).to.equal(6);

@@ -1,25 +1,39 @@
-export const longestSubString = function(s) {
-    let maxStreak = 0;
-    for (let i=0; i<s.length; i++) {
-        let streak = nonRepeatingStreak(s.substring(i, s.length));
-        if (streak > maxStreak) {
-            maxStreak = streak;
-        } 
+export const lengthOfLongestSubstring = function(s : string) : number {
+    if (s === null || s.length === 0) {
+        return 0;
     }
-    return maxStreak;
-};
 
-const nonRepeatingStreak = (s) => {
-    let streak = 0;
+    let i = 0;
+    let j = 0;
     let seenMap = {};
-    for (let i=0; i<s.length; i++) {
-        let char = s[i];
-        if (seenMap[char]) {
-            return streak;
+    let maxStreak = 1;
+    seenMap[s[i]] = 1;  
+
+    while (i <= j && i < s.length - 1 && j < s.length - 1) {
+        j++
+        let nextChar = s[j];
+        if (seenMap[nextChar]) {
+            seenMap[nextChar]++
         } else {
-            streak++;
-            seenMap[char] = true;
+            seenMap[nextChar] = 1;
+        }
+        
+        while (duplicatesExist(seenMap) && i <= j) {
+            seenMap[s[i]]--;
+            i++;
+        }
+
+        maxStreak = Math.max(maxStreak, j - i + 1);
+    }
+    return maxStreak;        
+}
+
+const duplicatesExist = (hashMap) => {
+    const keys = Object.keys(hashMap);
+    for (let i=0; i<keys.length; i++) {
+        if (hashMap[keys[i]] > 1) {
+            return true;
         }
     }
-    return streak;
+    return false;
 }
