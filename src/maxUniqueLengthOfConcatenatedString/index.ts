@@ -37,11 +37,14 @@ export default class Solution {
         }
 
         // Explore the decision space for each level.
-        // Each subsequent level has one less choice since we've already made some choices i.e., used some words up
-        for (let i=index; i<arr.length; i++) {
+        // Each subsequent level has one less choice since we've already made some choices i.e., used some words
+        for (let i=0; i<arr.length; i++) {
             this.dfs(arr, path + arr[i], i+1)
         }
+
     }
 }
+
+
 
 
