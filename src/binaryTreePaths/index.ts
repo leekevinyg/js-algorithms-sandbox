@@ -1,35 +1,68 @@
 /**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- */
-/**
  * @param {TreeNode} root
  * @return {string[]}
  */
-export var binaryTreePaths = function(root) {
+
+interface TreeNode {
+    val: number,
+    left?: TreeNode,
+    right?: TreeNode,
+    id?: number,
+}
+
+interface HashTable {
+    hashes : { [id:number] : TreeNode  };
+    id : number;
+    put(key : TreeNode, val: TreeNode) : void,
+    get(key : TreeNode) : TreeNode
+}
+
+class HashTable {
+    constructor() {
+        this.hashes = {};
+        this.id = 0;
+    }
+    put(key : TreeNode, val : TreeNode) : void {
+        if (key.id) {
+            // update operation
+            this.hashes[key.id] = val;
+        } else {
+            // new
+            key.id = this.id;
+            this.hashes[key.id] = val;
+            this.id++;
+        }
+    }
+    get(node : TreeNode) : TreeNode {
+        return this.hashes[node.id];
+    }
+}
+
+export var binaryTreePaths = function(root : TreeNode) : string[] {
     let paths = [];
-    var parent = {};
+    const parentHash = new HashTable();
 
     const constructPath = (node) => {
         // constrcuts a path by following the input node up to it's parent until it doesn't change
+        let reversedPath = [];
         let path = [];
-        let output = [node.val];
 
-        while (node !== parent[node]) {
-            path.push(node.val);
-            node = parent[node];
+        while (node.id !== parentHash.get(node).id) {
+            reversedPath.push(node.val);
+            node = parentHash.get(node);
+        }
+
+        if (node.id === parentHash.get(node).id) {
+            reversedPath.push(node.val);
         }
         
-        while (path.length > 0) {
-            output.push(path.pop());
+        while (reversedPath.length > 0) {
+            path.push(reversedPath.pop());
         }
-        paths.push(output);
+        paths.push(path);
     }
     
-    parent[root] = root;
+    parentHash.put(root, root);
     let searchStack = [root];
     while (searchStack.length > 0) {
         let node = searchStack.pop();
@@ -38,11 +71,11 @@ export var binaryTreePaths = function(root) {
             constructPath(node);
         }
         if (node.left) {
-            parent[node.left] = node;
+            parentHash.put(node.left, node);
             searchStack.push(node.left);
         }
         if (node.right) {
-            parent[node.right] = node;
+            parentHash.put(node.right, node);
             searchStack.push(node.right);
         }
     }
