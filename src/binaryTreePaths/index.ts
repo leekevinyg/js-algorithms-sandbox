@@ -39,6 +39,10 @@ class HashTable {
 }
 
 export var binaryTreePaths = function(root : TreeNode) : string[] {
+    if (!root) {
+        return [];
+    }
+
     let paths = [];
     const parentHash = new HashTable();
 
@@ -59,7 +63,7 @@ export var binaryTreePaths = function(root : TreeNode) : string[] {
         while (reversedPath.length > 0) {
             path.push(reversedPath.pop());
         }
-        paths.push(path);
+        paths.push(path.join("->"));
     }
     
     parentHash.put(root, root);

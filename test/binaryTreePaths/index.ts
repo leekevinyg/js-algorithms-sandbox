@@ -8,7 +8,7 @@ describe('Binary Tree Paths', () => {
             left: null,
             right: null,
         };
-        expect(binaryTreePaths(node)).to.equal("[[1]]");
+        expect(binaryTreePaths(node).toString()).to.equal(["1"].toString());
     });
     it('returns path of a simple tree', () => {
         const node = {
@@ -28,6 +28,6 @@ describe('Binary Tree Paths', () => {
                 left: null,
             },
         };
-        expect(binaryTreePaths(node).toString()).to.equal([ [ 1, 3 ], [ 1, 2, 5 ] ].toString());
+        expect(binaryTreePaths(node).toString()).to.equal(["1->3", "1->2->5"].toString());
     });
 });
