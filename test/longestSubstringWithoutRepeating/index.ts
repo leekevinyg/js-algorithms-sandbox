@@ -3,7 +3,7 @@ import { lengthOfLongestSubstring } from '../../src/longestSubstringWithoutRepea
 import { expect } from 'chai'
 
 describe('longest substring without repeating characters', () => {
-    it.only('properly returns the longest substring', () => {
+    it('properly returns the longest substring', () => {
         expect(lengthOfLongestSubstring('')).to.equal(0);
         expect(lengthOfLongestSubstring('a')).to.equal(1);
         expect(lengthOfLongestSubstring('pwwkew')).to.equal(3);
