@@ -24,4 +24,7 @@ Explanation: All root-to-leaf paths are: 1->2->5, 1->3
 
 (1) Run DFS, but track the parent of each traversed node in a hashmap.
 (2) When we get to a leaf node, calculate the path by following the node of the parent until it doesn't change.
-(3) Return all found paths.
+
+Time Complexity: O(lg n) for a balanced tree, O(n) for a tree with one really long branch from the root.
+
+Space Complexity: O(n) to store the hashmap of parents
