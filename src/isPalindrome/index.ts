@@ -1,14 +1,16 @@
-export const isPalindrome = (s) => {
-    let cleanString = s.replace(/[^0-9a-zA-Z]+/gmi,"").toLowerCase();
-    let l=0;
-    let r= cleanString.length - 1;
-    
-    while (l < r) {
-      if (cleanString.charAt(l) !== cleanString.charAt(r)) {
+export const isPalindrome = function(s : string) {
+  if (!s || s.length === 1) return true;
+  s = s.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+  let l = 0;
+  let r = s.length - 1;
+  while (r > l) {
+      if (s[l] === s[r]) {
+          l++;
+          r--;
+      } else {
           return false;
       }
-      l++;
-      r--;
-    }
-    return true;
+  }
+  
+  return true;
 };
