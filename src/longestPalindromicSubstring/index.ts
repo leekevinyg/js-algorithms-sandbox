@@ -1,27 +1,31 @@
-export const longestPalindrome = function(s) {
-    if (!s || s.length < 1) return "";
-    let start = 0;
-    let end = 0;
+export const longestPalindrome = function(s : string) : string {
+    if (!s) return '';
+    if (s.length === 1) return s;
+    let maxString : string = '';
+    let evenPalindrome  : string = '';
+    let oddPalindrome : string = '';
     
     for (let i=0; i<s.length; i++) {
-        let len1 = expandFromMiddle(s, i, i); // handles odd length palindrome
-        let len2 = expandFromMiddle(s, i, i+1); // handles even length palindrome
-        let len = Math.max(len1, len2);
-        if (len > end - start) {
-            start = i - ((len - 1) / 2);
-            end = i + (len / 2);
+        let l=i;
+        let r=i;
+        oddPalindrome = expandFromMiddle(l, r, s);
+        evenPalindrome = expandFromMiddle(l, r+1, s);
+        if (evenPalindrome.length > maxString.length) {
+            maxString = evenPalindrome;
         }
-        return s.substring(start, end + 1);
+        if (oddPalindrome.length > maxString.length) {
+            maxString = oddPalindrome;
+        }
     }
+    return maxString;
 };
 
-const expandFromMiddle = (s, left, right) => {
-    if (!s || left > right) return 0;
-    while (left >= 0 && right < s.length && s.charAt(left) === s.charAt(right)) {
-        left--;
-        right++;
+let expandFromMiddle = (l : number, r : number, s : string) : string => {
+    let string : string = '';
+    while (s[l] === s[r] && l >= 0 && r <= s.length - 1) {
+        string = s.slice(l, r+1);
+        l--;
+        r++;
     }
-
-    // return length of palindrome found
-    return right - left - 1;
+    return string;
 }
