@@ -1,62 +1,57 @@
-/**
- * @param {string} s
- * @param {string} t
- * @return {string}
- */
-var minWindow = function(s : string, t : string) : string {
-    
+export const minWindow = function (s, t) {
     // handle null edge cases
-    if (!s || !t) return "";
-    if (t.length > s.length) return "";
-    
+    if (!s || !t)
+        return "";
+    if (t.length > s.length)
+        return "";
     // construct char count map for t
-    let tCount : { [key: string] : number} = {};
-    for (let i=0; i<t.length; i++) {
+    let tCount = {};
+    for (let i = 0; i < t.length; i++) {
         if (tCount[t[i]]) {
             tCount[t[i]]++;
-        } else {
+        }
+        else {
             tCount[t[i]] = 1;
         }
     }
-    
-    let minWindow : string = "";
-    let minWindowLength : number = Number.POSITIVE_INFINITY;
-    let right : number = 0;
-    let left : number = 0;
-    let currCount : {[key: string] : number} = {};
-    currCount[s[0]] = 1;    
-    
-    while (right >= left && right < s.length) {
-       if (characterCountMet(currCount, tCount)) {
-           let substring = s.slice(left, right + 1);
-           if (substring.length < minWindowLength) {
-               minWindow = substring;
-               minWindowLength = substring.length;
-           }
-           currCount[s[left]]--;
-           left++;
-       } else {
-           right++;
-           if (currCount[s[right]]) {
-               currCount[s[right]]++;
-           } else {
-               currCount[s[right]] = 1;
-           }  
-       }
+    let minWindow = "";
+    let right = 0;
+    let left = 0;
+    let numUniqueChars = Object.keys(tCount).length;
+
+    if (tCount[s[left]] !== undefined) {
+        tCount[s[left]]--;
     }
 
-    return minWindow;
-}
-
-
-// T is max length S, so this is O(S)
-const characterCountMet = (currCount : {[key: string] : number}, tCount  : {[key:string] : number}) : boolean => {
-    for (property in tCount) {
-        if (currCount[property] >= tCount[property]) {
-            // we're good, continue checking.
-        } else {
-            return false;
+    if (tCount[s[left]] === 0) {
+        numUniqueChars--;
+    }
+    
+    while (right < s.length) {
+        if (numUniqueChars === 0) {
+            let substring = s.slice(left, right + 1);
+            if (minWindow === "" || substring.length < minWindow.length) {
+                minWindow = substring;
+            }
+            // If the leftmost character was in our tcount, update the count as we increment the pointer
+            if (tCount[s[left]] !== undefined) {
+                tCount[s[left]]++;
+            }
+            if (tCount[s[left]] > 0) {
+                numUniqueChars++;
+            }
+            left++;
+        }
+        else {
+            right++;
+            // we have reached a character in our t string, update the char count
+            if (tCount[s[right]] !== undefined) {
+                tCount[s[right]]--;
+            }
+            if (tCount[s[right]] === 0) {
+                numUniqueChars--;
+            }
         }
     }
-    return true;
+    return minWindow;
 };
