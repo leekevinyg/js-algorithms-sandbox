@@ -20,7 +20,7 @@ class MinStack implements IMinStack {
     push(val : number) {
         const node : IStackNode = {
             val,
-            min: val < this.getMin() ? val : this.getMin();
+            min: val < this.getMin() ? val : this.getMin(),
         }
         this.stack.push(node);
     }
