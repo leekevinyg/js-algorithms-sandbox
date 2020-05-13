@@ -3,9 +3,11 @@
 Provides constant time access to the smallest (min heap) or biggest
 (max heap) item inside the heap. 
 
-This is better than linear data structures like Arrays or LinkedList which can
-get you this value in O(n) time while non-linear data structures like a 
-Binary Search Trees (BST) can get you this value in O(log n) time.
+This is better than linear data structures like arrays or linked lists which can
+get you these values in O(n) time.
+
+This is also better than non-linear data structures like a 
+Binary Search Trees (BST) which will get you these values in O(log n) time.
 
 A heap is often a data structure that is used to implement a Priority
 Queue. 
