@@ -8,14 +8,22 @@ describe('Priority Queue', () => {
         expect(pqueue.peek()).equal(undefined);
     });
 
-    it('should return the minimum item in the queue', () => {
+    it.only('should return the minimum item in the queue', () => {
         const pqueue = new PriorityQueue();
-        pqueue.insert(10);
-        pqueue.insert(20);
-        pqueue.insert(1);
-        pqueue.insert(2);
-        expect(pqueue.peek()).equal(1);
+        pqueue.insert({
+            priority: 10,
+        });
+        pqueue.insert({
+            priority: 20,
+        });
+        pqueue.insert({
+            priority: 1,
+        });
+        pqueue.insert({
+            priority: 2,
+        });
+        expect(pqueue.peek().priority).equal(1);
         pqueue.remove();
-        expect(pqueue.peek()).equal(2);
+        expect(pqueue.peek().priority).equal(2);
     });
 });

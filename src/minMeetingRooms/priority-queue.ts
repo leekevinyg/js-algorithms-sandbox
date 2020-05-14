@@ -1,6 +1,6 @@
 interface IItem {
     priority: number,
-    data: any,
+    data?: any,
 }
 
 interface IPriorityQueue {
@@ -17,7 +17,7 @@ export class PriorityQueue implements IPriorityQueue {
     }
     // (1) place item at the next available binary tree position
     // (2) bubble it up if necessary to restore heap property
-    insert(node) {
+    insert(node : IItem) {
         // add the node into the last position in the binary tree
         this.heap.push(node);
         if (this.heap.length > 1) {
