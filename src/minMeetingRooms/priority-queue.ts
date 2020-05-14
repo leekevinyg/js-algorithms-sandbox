@@ -32,6 +32,7 @@ class MinPriorityQueue implements IPriorityQueue {
                 this.heap[current] = savedParent;
                 this.heap[parent] = savedCurrent;
                 current = parent;
+                parent = Math.floor(current/2);
             }
         }
     }
@@ -57,8 +58,8 @@ class MinPriorityQueue implements IPriorityQueue {
         if (this.heap[leftChild] === undefined) {
             return topElement;
         }
-        while (Math.min(this.heap[leftChild].priority, this.heap[rightChild].priority) < this.heap[current].priority) {
-            if (this.heap[leftChild].priority < this.heap[rightChild].priority) {
+        while (Math.min(this.heap[leftChild].priority, !!this.heap[rightChild] ? this.heap[rightChild].priority : Number.POSITIVE_INFINITY) < this.heap[current].priority) {
+            if (this.heap[leftChild].priority < (!!this.heap[rightChild] ? this.heap[rightChild].priority : Number.POSITIVE_INFINITY)) {
                 let savedParent = this.heap[current];
                 let savedChild = this.heap[leftChild];
                 this.heap[current] = savedChild;
@@ -84,6 +85,12 @@ class MinPriorityQueue implements IPriorityQueue {
     }
     isEmpty() {
         return this.heap.length === 1;
+    }
+    length() {
+        return this.heap.length - 1;
+    }
+    getHeap() {
+        return this.heap;
     }
 }
 
