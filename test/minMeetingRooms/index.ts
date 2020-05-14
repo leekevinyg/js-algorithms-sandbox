@@ -1,15 +1,15 @@
-import { PriorityQueue } from '../../src/minMeetingRooms/priority-queue';
+import { MinPriorityQueue } from '../../src/minMeetingRooms/priority-queue';
 import { expect } from 'chai';
 
 describe('Priority Queue', () => {
     it('should return undefined when peeked with no elements', () => {
-        const pqueue = new PriorityQueue();
+        const pqueue = new MinPriorityQueue();
         expect(pqueue.isEmpty()).equal(true);
         expect(pqueue.peek()).equal(undefined);
     });
 
     it.only('should return the minimum item in the queue', () => {
-        const pqueue = new PriorityQueue();
+        const pqueue = new MinPriorityQueue();
         pqueue.insert({
             priority: 10,
         });

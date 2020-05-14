@@ -10,7 +10,7 @@ interface IPriorityQueue {
     isEmpty() : boolean,
 }
 
-export class PriorityQueue implements IPriorityQueue {
+class MinPriorityQueue implements IPriorityQueue {
     private heap;
     constructor() {
         this.heap = [null];
@@ -25,7 +25,7 @@ export class PriorityQueue implements IPriorityQueue {
             let current = this.heap.length - 1;
             let parent = Math.floor(current/2);
             // Math.floor(current/2) is the parent of the node at the current index
-            while (current > 1 && this.heap[parent] > this.heap[current]) {
+            while (current > 1 && this.heap[parent].priority > this.heap[current].priority) {
                 // swap current with parent (bubble up)
                 let savedCurrent = this.heap[current];
                 let savedParent = this.heap[parent];
@@ -47,8 +47,8 @@ export class PriorityQueue implements IPriorityQueue {
         let current = 1;
         let leftChild = 2;
         let rightChild = 3;
-        while (Math.min(this.heap[leftChild], this.heap[rightChild]) < this.heap[current]) {
-            if (this.heap[leftChild] < this.heap[rightChild]) {
+        while (Math.min(this.heap[leftChild].priority, this.heap[rightChild].priority) < this.heap[current].priority) {
+            if (this.heap[leftChild].priority < this.heap[rightChild].priority) {
                 let savedParent = this.heap[current];
                 let savedChild = this.heap[leftChild];
                 this.heap[current] = savedChild;
@@ -63,6 +63,9 @@ export class PriorityQueue implements IPriorityQueue {
             }
             leftChild = 2 * current;
             rightChild = 2 * current + 1;
+            if (!this.heap[leftChild] && !this.heap[rightChild]) {
+                break;
+            }
         }
         return topElement;
     }
@@ -73,3 +76,7 @@ export class PriorityQueue implements IPriorityQueue {
         return this.heap.length === 1;
     }
 }
+
+export {
+    MinPriorityQueue,
+};
