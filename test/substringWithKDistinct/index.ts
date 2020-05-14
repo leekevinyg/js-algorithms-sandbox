@@ -2,7 +2,7 @@ import { lengthOfLongestSubstringKDistinct } from '../../src/substringWithKDisti
 import { expect } from 'chai';
 
 describe('length of longest substring with k distinct chars', () => {
-    it.only('should return the length of the longest substring with k discint', () => {
+    it('should return the length of the longest substring with k discint', () => {
         expect(lengthOfLongestSubstringKDistinct('a', 0)).to.equal(0);
         expect(lengthOfLongestSubstringKDistinct('a', 1)).to.equal(1);
         expect(lengthOfLongestSubstringKDistinct('aa', 1)).to.equal(2);
