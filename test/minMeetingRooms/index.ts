@@ -8,7 +8,7 @@ describe('Priority Queue', () => {
         expect(pqueue.peek()).equal(undefined);
     });
 
-    it.only('should return the minimum item in the queue', () => {
+    it('should return the minimum item in the queue', () => {
         const pqueue = new MinPriorityQueue();
         pqueue.insert({
             priority: 10,
@@ -25,5 +25,19 @@ describe('Priority Queue', () => {
         expect(pqueue.peek().priority).equal(1);
         pqueue.remove();
         expect(pqueue.peek().priority).equal(2);
+    });
+
+
+    it('should be able remove all items in a heap of size 2', () => {
+        const pqueue = new MinPriorityQueue();
+        pqueue.insert({
+            priority: 10,
+        });
+        pqueue.insert({
+            priority: 20,
+        });
+        expect(pqueue.remove().priority).equal(10);
+        pqueue.remove();
+        expect(pqueue.peek()).equal(undefined);
     });
 });

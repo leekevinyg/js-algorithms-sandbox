@@ -1,3 +1,5 @@
+
+import { MinPriorityQueue } from './priority-queue';
 /**
  * @param {number[][]} intervals
  * @return {number}
@@ -11,53 +13,26 @@ var minMeetingRooms = function(intervals) {
         return 1;
     }
     
-    intervals.sort((a, b) => {
-        if (a[0] < b[0]) {
-            return 1;
-        } else if (a[0] > b[0]) {
-            return -1;
+    // sort the intervals by start time.
+    intervals.sort((a, b) => a[0] - b[0]);
+
+    let roomsNeeded = 0;
+    let pqueue = new MinPriorityQueue();
+
+    for (let i=0; i<intervals.length; i++) {
+        if (pqueue.isEmpty()) {
+            roomsNeeded++;
+        } else if (pqueue.peek().priority >= intervals[i][0]) {
+            // if the earliest ending meeting overlaps with the meeting we are trying to schedule allocate a new room
+            roomsNeeded++;
+        } else if (pqueue.peek().data[0] === intervals[i][0] && pqueue.peek().data[1] === intervals[i][1]) {
+            // meetings completely overlap.
+            roomsNeeded++;
         }
-        return 0;
-    });
-    
-    // one entry is equivalent to one room.
-    let bookings = [[intervals.pop()]];
-    
-    // start scheduling
-    while (intervals.length > 0) {
-        let interval = intervals.pop();
-        let scheduled = false;
-        // check if we can fit in an existing room
-        for (let i=0; i<bookings.length; i++) {
-            if (hasConflict(interval, bookings[i])) {
-                continue;
-            } else {
-                bookings[i].push(interval);
-                scheduled = true;
-                break;
-            }
-        }
-        // if we can't, then start a new room
-        if (!scheduled) {
-            bookings.push([interval]);
-        }
+        pqueue.insert({
+            priority: intervals[i][1], // end time
+            data: intervals[i],
+        });
     }
-    return bookings.length;
+    return roomsNeeded;
 };
-
-
-const hasConflict = (i1, bookings) => {
-    for (let i=0; i<bookings.length; i++) {
-        if (overlap(bookings[i], i1)) {
-            return true;
-        }
-    }
-    return false;
-}
-const overlap = (i1, i2) => {
-    // if the first intervals end time happens after the second intervals start time, then there's an overlap
-    if (i1[1] > i2[0]) {
-        return true;
-    }
-    return false;
-}
