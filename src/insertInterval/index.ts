@@ -4,9 +4,18 @@ export const insert = function(intervals : number[][], newInterval : number[]) :
     
     // We can guarantee the length of the intervals list after
     // merging the new interval is at least 2.
+    // get position of new interval
     intervals.push(newInterval);
-    intervals.sort((a, b) => a[0] - b[0]);
-    console.log(intervals);
+    let newIntervalIndex = intervals.length - 1;
+    let i = intervals.length - 2;
+    while (newInterval[0] < intervals[i][0] && i >= 0) {
+        // swap the new interval with the interval currently before it.
+        let saved = intervals[i];
+        intervals[i] = newInterval;
+        intervals[newIntervalIndex] = saved;
+        newIntervalIndex = i;
+        i--;
+    }
     let result = [];
     
     for (let i=0; i<intervals.length; i++) {
