@@ -2,30 +2,14 @@ interface IMedianFinder {
     addNum(num : number) : void,
     findMedian() : number,
 }
-
-/*
-    Binary Search: Given a sorted array, provides the position the target should be inserted at
-    
-    Case 1: Empty
-        [] and target 10 should return 0
-        
-    EVEN ARRAYS:
-        Case 2: Insert at the end 
-            [0, 1] and target 2 should return 2
-        Case 3: Insert in the middle 
-            [0, 1, 3, 4] and target 2 should return 2
-        Case 4: Insert at the beginning
-            [2, 3] and target 1 should return 0
-    
-    ODD ARRAYS:
-        Case 5: Insert at end
-        [4, 10, 15] and target 20 should return 3
-        Case 6: Insert in middle
-        [4, 10, 15] and target 10 should return 1.
-        Case 7: Insert at the beginning
-            [4, 10, 15] and target 1 should return 0.
-*/
 export const binaryInsertionSortIndex = (array : number[], start : number, end : number, target : number) => {
+    if (array.length === 1) {
+        if (array[0] < target) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
     let pivot = Math.ceil(start + ((end - start) / 2));
     if (array[pivot] >= target && array[pivot - 1] <= target) {
         return pivot;
@@ -37,7 +21,7 @@ export const binaryInsertionSortIndex = (array : number[], start : number, end :
             return 0;
         }
     } else {
-        // search to the right of pivot
+        // search to the right of pivot...make sure we don't go out of bounds
         if (pivot + 1 <= end) {
             return binaryInsertionSortIndex(array, pivot + 1, end, target);
         } else {
@@ -52,9 +36,23 @@ export class MedianFinder implements IMedianFinder {
         this.array = [];
     }
     addNum(num: number): void {
-        throw new Error("Method not implemented.");
+        const insertIndex = binaryInsertionSortIndex(this.array, 0, this.array.length - 1, num);
+        this.array.splice(insertIndex, 0, num);
     }
     findMedian(): number {
-        throw new Error("Method not implemented.");
+        if (this.array.length === 0) {
+            return 0;
+        }
+        if (this.array.length === 1) {
+            return this.array[0];
+        }
+        // at least 2 long.
+        let mid = Math.ceil(this.array.length / 2) - 1;
+        if (this.array.length % 2 === 0) {
+            // return mean of 2 middle elements
+            return ((this.array[mid] + this.array[mid+1]) / 2);
+        } else {
+            return this.array[mid];
+        }
     }
 }
