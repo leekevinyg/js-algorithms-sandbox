@@ -1,3 +1,5 @@
+import { MinPriorityQueue, MaxPriorityQueue } from './priority-queue';
+
 interface IMedianFinder {
     addNum(num : number) : void,
     findMedian() : number,
@@ -31,28 +33,28 @@ export const binaryInsertionSortIndex = (array : number[], start : number, end :
 }
 
 export class MedianFinder implements IMedianFinder {
-    private array : number[];
+    private maxHeap;
+    private minHeap;
     constructor() {
-        this.array = [];
+        this.maxHeap = new MaxPriorityQueue();
+        this.minHeap = new MinPriorityQueue();
     }
     addNum(num: number): void {
-        const insertIndex = binaryInsertionSortIndex(this.array, 0, this.array.length - 1, num);
-        this.array.splice(insertIndex, 0, num);
+        this.maxHeap.insert(num, num);
+        const topOfMaxHeap = this.maxHeap.remove();
+        this.minHeap.insert(topOfMaxHeap, topOfMaxHeap);
+        if (this.minHeap.length() > this.maxHeap.length()) {
+            const topOfMinHeap = this.minHeap.remove();
+            this.maxHeap.insert(topOfMinHeap, topOfMinHeap);
+        }
     }
     findMedian(): number {
-        if (this.array.length === 0) {
-            return 0;
-        }
-        if (this.array.length === 1) {
-            return this.array[0];
-        }
-        // at least 2 long.
-        let mid = Math.ceil(this.array.length / 2) - 1;
-        if (this.array.length % 2 === 0) {
-            // return mean of 2 middle elements
-            return ((this.array[mid] + this.array[mid+1]) / 2);
+        let size = this.maxHeap.length() + this.minHeap.length();
+        if (size % 2 === 0) {
+            return (this.maxHeap.peek() + this.minHeap.peek()) / 2;
         } else {
-            return this.array[mid];
+            return this.maxHeap.peek();
         }
     }
 }
+
