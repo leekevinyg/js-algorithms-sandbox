@@ -80,7 +80,7 @@ describe('Median Finder', () => {
         finder.addNum(-3);
         expect(finder.findMedian()).equal(-2);
     });
-    it.only('finds the median', () => {
+    it('finds the median', () => {
         let finder = new MedianFinder();
         finder.addNum(117);
         expect(finder.findMedian()).equal(117);
