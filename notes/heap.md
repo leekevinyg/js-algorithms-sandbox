@@ -4,7 +4,7 @@ Provides constant time access to the smallest (min heap) or biggest
 (max heap) item inside the heap. 
 
 This is better than linear data structures like arrays or linked lists which can
-get you these values in O(n) time.
+get you these values in ```O(n)``` time.
 
 This is also better than non-linear data structures like a 
 Binary Search Trees (BST) which will get you these values in O(log n) time.
