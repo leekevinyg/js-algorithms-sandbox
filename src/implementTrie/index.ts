@@ -18,7 +18,7 @@ class TrieNode implements ITrieNode {
     }
 }
 
-class Trie implements ITrie {
+export class Trie implements ITrie {
     root : TrieNode;
     constructor() {
         this.root = new TrieNode();
