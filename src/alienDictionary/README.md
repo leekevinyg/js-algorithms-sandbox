@@ -52,7 +52,7 @@ Note:
 
 **Solution**
 
-This problem can be reduced to a topological sort problem. We first take a look at the array:
+This problem can be reduced to a topological sort problem. We first take a look at the following array:
 
 <pre>
 [
