@@ -22,8 +22,7 @@ Explanation: There are a total of 2 courses to take. To take course 1 you should
 
 **Solution**
 
-This problem can be reduced to the problem of finding if a directed graph contains cycles. If it contains a cycle, then it is not possible to finish all courses as taking one course will rely on taking another course,
-and vice versa.
+This problem can be reduced to the problem of finding if a directed graph contains cycles. If it contains a cycle, then it is not possible to finish all courses as taking one course will rely on taking another course, and vice versa.
 
 We will represent courseA requiring a prerequisite of courseB as the edge courseA -> courseB. The graph will contain a cycle if there is also an edge we can follow from courseB back to courseA.
 
