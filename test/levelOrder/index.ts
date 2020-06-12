@@ -2,7 +2,7 @@ import { levelOrder } from '../../src/levelOrderTraversal';
 import { expect } from 'chai';
 
 describe('level order traversal', () => {
-    it.only('should return the level order trvaersal of a binary tree', () => {
+    it('should return the level order trvaersal of a binary tree', () => {
         let root = {
             val: 3,
             left: {
