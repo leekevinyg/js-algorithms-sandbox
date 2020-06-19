@@ -2,7 +2,7 @@ import { countUnivalSubtrees } from '../../src/univalueSubtrees';
 import { expect } from 'chai';
 
 describe('count univalue subtrees', () => {
-    it.only('should count univalue subtrees', () => {
+    it('should count univalue subtrees', () => {
         let root = {
             val: 5,
             left: {
