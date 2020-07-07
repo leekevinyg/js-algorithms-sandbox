@@ -1,4 +1,4 @@
-var numDecodings = function(s : string) {
+export const numDecodings = function(s : string) {
     let totalLength : number = s.length;
     let memo : Map<string, number> = new Map();
 
