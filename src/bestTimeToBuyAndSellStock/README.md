@@ -1,4 +1,4 @@
-<h2>Best Time to Buy and Sell Stock</h2>
+<h2>Best Time to Buy and Sell Stock.</h2>
 
 **Question**
 
