@@ -3,6 +3,6 @@ import { expect } from 'chai';
 
 describe('numDecodings', () => {
     it('should decode the number of ways a string of numbers can be parsed', () => {
-        expect(numDecodings('12')).to.equal(2);
+        expect(numDecodings('12')).to.equal(2); // (1,2) and (12)
     });
 })
