@@ -48,6 +48,7 @@ class UnionFind implements IUnionFind {
     }
 
     getTotalComponents() : number[] {
+        // find how many unique roots there are in the id array
         let rootsSoFar = [];
         for (let i=0; i<this.id.length; i++) {
             if (!rootsSoFar.includes(this.id[i])) {
