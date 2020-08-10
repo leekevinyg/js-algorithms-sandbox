@@ -6,10 +6,12 @@ interface IUnionFind {
 class UnionFind implements IUnionFind {
     id: Array<number>;
     size: Array<number>;
+    count: number;
 
     constructor(numberOfNodes : number) {
         this.id = new Array(numberOfNodes);
         this.size = new Array(numberOfNodes);
+        this.count = numberOfNodes;
         for (let i = 0; i < numberOfNodes; i++) {
             this.id[i] = i;
             this.size[i] = 1;
@@ -45,17 +47,11 @@ class UnionFind implements IUnionFind {
             this.id[rootA] = rootB;
             this.size[rootB] += this.size[rootA];
         }
+        count--;
     }
 
-    getTotalComponents() : number[] {
-        // find how many unique roots there are in the id array
-        let rootsSoFar = [];
-        for (let i=0; i<this.id.length; i++) {
-            if (!rootsSoFar.includes(this.id[i])) {
-                rootsSoFar.push(this.id[i]);
-            }
-        }
-        return rootsSoFar;
+    getTotalComponents() : number {
+        return count;
     }
 }
 
